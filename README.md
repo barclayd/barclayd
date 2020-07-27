@@ -152,7 +152,7 @@ I'm a software engineer, currently working at the [BBC](https://github.com/bbc) 
 
 <br>
 
-#### 𝗚𝗲𝘁 𝗶𝗻 𝘁𝗼𝘂𝗰𝗵 𝘄𝗶𝘁𝗵 𝗺𝗲 𝗼𝗿 𝗷𝘂𝘀𝘁 𝘀𝗮𝘆 𝗵𝗲𝘆
+#### Get in touch with me ✉️
 [<img width = "30px" height="20px" src="https://cdn.svgporn.com/logos/twitter.svg">](https://twitter.com/danielbarclay)  | [<img  height="20px" width = "30px" src="https://cdn.svgporn.com/logos/github-icon.svg">](https://github.com/barclayd) | [<img width = "75px"  height="20px" src="https://cdn.svgporn.com/logos/linkedin.svg">](https://www.linkedin.com/in/daniel-barclay-74b967152) 
 
 ---
