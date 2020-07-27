@@ -42,6 +42,10 @@ I'm a software engineer, currently working at the [BBC](https://github.com/bbc) 
         <span>Apollo Client</span><br><br>
         <img height="45px" src="https://cdn.svgporn.com/logos/apollostack.svg">
       </td>
+      <td width="2%" align="center">
+        <span>CSS3/SCSS</span><br><br>
+        <img height="45px" src="https://cdn.svgporn.com/logos/sass.svg">
+      </td>
     </tr>
     
   </tbody>
@@ -129,6 +133,30 @@ I'm a software engineer, currently working at the [BBC](https://github.com/bbc) 
       <td width="2%" align="center">
         <span>GIT</span><br><br>
         <img height="40px" src="https://cdn.svgporn.com/logos/git-icon.svg">
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+#### Testing tools
+<table>
+  <tbody>
+    <tr valign="top">
+      <td width="2%" align="center">
+        <span>Jest</span><br><br>
+        <img height="40px" src="https://cdn.svgporn.com/logos/jest.svg">
+      </td>
+      <td width="2%" align="center">
+        <span>XCTest/XCTestUI</span><br><br>
+        <img height="40px" src="https://blog.scottlogic.com/cbrown/assets/xctest-logo.jpg">
+      </td>
+      <td width="2%" align="center">
+        <span>Puppeteer</span><br><br>
+        <img height="40px" src="https://cdn.svgporn.com/logos/puppeteer.svg">
+      </td>
+      <td width="2%" align="center">
+        <span>Cucumber</span><br><br>
+        <img height="40px" src="https://cdn.svgporn.com/logos/cucumber.svg">
       </td>
     </tr>
   </tbody>
