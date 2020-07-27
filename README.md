@@ -8,7 +8,7 @@ I'm a fullstack software engineer, currently working at the [BBC](https://github
 
 <br>
 
-### My Favourite Tech Stack
+### My Tech Stack
 
 #### Frontend
 <table>
