@@ -8,7 +8,7 @@ I'm a software engineer, currently working at the [BBC](https://github.com/bbc) 
 
 ### My Favourite Tech Stack
 
-##### Frontend
+#### Frontend
 <table>
   <tbody>
     <tr valign="top">
@@ -47,7 +47,7 @@ I'm a software engineer, currently working at the [BBC](https://github.com/bbc) 
   </tbody>
 </table>
 
-##### Backend
+#### Backend
 <table>
   <tbody>
     <tr valign="top">
@@ -86,7 +86,7 @@ I'm a software engineer, currently working at the [BBC](https://github.com/bbc) 
   </tbody>
 </table>
 
-##### Languages
+#### Languages
 <table>
   <tbody>
     <tr valign="top">
