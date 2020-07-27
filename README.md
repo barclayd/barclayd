@@ -2,7 +2,9 @@
 
 I'm a software engineer, currently working at the [BBC](https://github.com/bbc) as an iOS Engineer, who's passionate about creating and maintaing high quality software solutions for both the web and Apple's ecoystem (iOS/macOS/watchOS/iPadOS) to solve real world issues.
 
-![GitHub Stats (public repos)](https://github-readme-stats.vercel.app/api?username=barclayd&hide=["stars"]&show_icons=true)
+![GitHub Stats (public repos)](https://github-readme-stats.vercel.app/api?username=barclayd&show_icons=true)
+
+[![Top languages](https://github-readme-stats.vercel.app/api/top-langs/?username=barclayd)](https://github.com/anuraghazra/github-readme-stats)
 
 <br>
 
