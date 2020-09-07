@@ -2,7 +2,9 @@
 
 I'm a fullstack software engineer, currently working at the [BBC](https://github.com/bbc) as an iOS Engineer, who's passionate about creating and maintaing high quality software solutions for both the web and Apple's ecoystem (iOS/macOS/watchOS/iPadOS) to solve real world issues.
 
-### My Active Projects
+## My Active Projects
+
+### myFridge
 
 <p align="center">
   <img width=600 src="https://user-images.githubusercontent.com/39765499/92406040-ede1a880-f12e-11ea-8e1d-2ea19c0aaf79.png" />
