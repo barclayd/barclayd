@@ -2,9 +2,11 @@
 
 I'm a fullstack software engineer, currently working at the [BBC](https://github.com/bbc) as an iOS Engineer, who's passionate about creating and maintaing high quality software solutions for both the web and Apple's ecoystem (iOS/macOS/watchOS/iPadOS) to solve real world issues.
 
-![GitHub Stats (public repos)](https://github-readme-stats.vercel.app/api?username=barclayd&show_icons=true)
+### My Active Projects
 
-[![Top languages](https://github-readme-stats.vercel.app/api/top-langs/?username=barclayd)](https://github.com/anuraghazra/github-readme-stats)
+<p align="center">
+  <img width=600 src="https://user-images.githubusercontent.com/39765499/92405702-1321e700-f12e-11ea-9673-9fdcdfdcd493.png" />
+</p>
 
 <br>
 
