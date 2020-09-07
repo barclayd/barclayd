@@ -4,7 +4,7 @@ I'm a fullstack software engineer, currently working at the [BBC](https://github
 
 ## My Active Projects
 
-### myFridge
+### myFridge: smart food inventory tracker
 
 <p align="center">
   <img width=600 src="https://user-images.githubusercontent.com/39765499/92406040-ede1a880-f12e-11ea-8e1d-2ea19c0aaf79.png" />
