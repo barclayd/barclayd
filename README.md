@@ -10,7 +10,7 @@ I'm a fullstack software engineer, currently working at the [BBC](https://github
   <img width=600 src="https://user-images.githubusercontent.com/39765499/92406040-ede1a880-f12e-11ea-8e1d-2ea19c0aaf79.png" />
 </p>
 
-A smart food waste tracker to help you use all the food you buy and reduce food waste. Available on the App Store and coming to the web soon!
+A smart food waste tracker to help you use all the food you buy and reduce food waste. Available on the [App Store](https://apps.apple.com/gb/app/myfridge/id1526361370) and coming to the web soon!
 
 <br>
 
