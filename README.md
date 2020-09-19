@@ -194,8 +194,7 @@ A smart food waste tracker to help you use all the food you buy and reduce food 
 
 <br>
 
+---
+
 #### Get in touch with me ✉️
 [<img width = "30px" height="20px" src="https://cdn.svgporn.com/logos/twitter.svg">](https://twitter.com/danielbarclay)  | [<img  height="20px" width = "30px" src="https://cdn.svgporn.com/logos/github-icon.svg">](https://github.com/barclayd) | [<img width = "75px"  height="20px" src="https://cdn.svgporn.com/logos/linkedin.svg">](https://www.linkedin.com/in/daniel-barclay-74b967152) 
-
----
-⏳ Active project details coming soon...
