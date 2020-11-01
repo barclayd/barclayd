@@ -124,6 +124,10 @@ A smart food waste tracker to help you use all the food you buy and reduce food 
         <span>Python</span><br><br>
         <img height="40px" src="https://cdn.svgporn.com/logos/python.svg">
       </td>
+      <td width="2%" align="center">
+        <span>SQL</span><br><br>
+        <img height="40px" src="https://user-images.githubusercontent.com/39765499/97807637-d66bfb00-1c59-11eb-8248-b63157cf4ab6.png">
+      </td>
     </tr>
   </tbody>
 </table>
