@@ -184,7 +184,6 @@ else
 fi
 }
 
-# rebase feature branches from a main branch
 grfb() {
 if [ "$1" != "" ]
 then
@@ -202,12 +201,56 @@ else
 fi
 }
 
+# bump-to-latest
+
+bump() {
+if [ "$1" != "" ]
+then
+	if [ "$2" != "" ]
+	then
+		npm uninstall "$2" && npm i --save "$2"@"$1"
+	else
+	echo please provide a package name
+	fi
+else
+	echo Please provide a version tag
+fi
+}
+
+
+# bump-to-latest
+
+bump-dev() {
+if [ "$1" != "" ]
+then
+	if [ "$2" != "" ]
+	then
+		npm uninstall "$2" && npm i --save-dev "$2"@"$1"
+	else
+	echo please provide a package name
+	fi
+else
+	echo Please provide a version tag
+fi
+}
+
+# chromedriver versioning
+export PATH=$PATH:~/.bin
+WEBDRIVER_DRIVER_VERSION=$(chromedriverversion.sh)
+
 # aliases
 alias gs="git status"
-# uninstall storybook
 alias rsb="npm uninstall wwu-storybook"
-# add storybook canary
-alias asbc="npm i --save wwu-storybook"
+alias asb="npm i --save wwu-storybook"
+alias asbc="npm uninstall wwu-storybook && npm i --save wwu-storybook@canary"
+alias @bbc/e2e:local="WEBDRIVER_DRIVER_VERSION=$WEBDRIVER_DRIVER_VERSION WEBDRIVER_BASE_URL=https://sandbox.bbc.co.uk npm run test:e2e"
+alias @bbc/e2e:local:show="WEBDRIVER_DRIVER_VERSION=$(chromedriverversion) WEBDRIVER_BASE_URL=https://sandbox.bbc.co.uk WEBDRIVER_BROWSER=chrome npm run test:e2e"
+alias @bbc/e2e:test="WEBDRIVER_BASE_URL=https://www.test.bbc.co.uk WEBDRIVER_DRIVER_VERSION=$WEBDRIVER_DRIVER_VERSION npm run test:e2e"
+
+# browserstack
+
+export BROWSERSTACK_USER="chriskay2"
+export BROWSERSTACK_KEY="keghnhNtSKeoukaqtmyE"
 
 # migrate from bitbucket to GitHub
 
@@ -225,10 +268,6 @@ fi
 }
 
 export PATH="/usr/local/opt/postgresql@10/bin:$PATH"
-
-# chromedriver versioning
-export PATH=$PATH:~/.bin
-WEBDRIVER_DRIVER_VERSION=$(chromedriverversion.sh)
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="/Users/barcld01/.sdkman"
