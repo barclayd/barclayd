@@ -1,6 +1,6 @@
 ### Welcome to my Github 👨🏻‍💻
 
-I'm a fullstack software engineer, currently working at the [BBC](https://github.com/bbc) as an iOS Engineer, who's passionate about creating and maintaing high quality software solutions for both the web and Apple's ecoystem (iOS/macOS/watchOS/iPadOS) to solve real world issues.
+I'm a fullstack software engineer, currently working at the [BBC](https://github.com/bbc) as a frontend developer, who's passionate about creating and maintaing high quality software solutions for both the web and Apple's ecoystem (iOS/macOS/watchOS/iPadOS) to solve real world issues.
 
 ## My Active Projects
 
@@ -124,6 +124,10 @@ A smart food waste tracker to help you use all the food you buy and reduce food 
         <span>Python</span><br><br>
         <img height="40px" src="https://cdn.svgporn.com/logos/python.svg">
       </td>
+      <td width="2%" align="center">
+        <span>SQL</span><br><br>
+        <img height="40px" src="https://user-images.githubusercontent.com/39765499/97807637-d66bfb00-1c59-11eb-8248-b63157cf4ab6.png">
+      </td>
     </tr>
   </tbody>
 </table>
@@ -193,6 +197,10 @@ A smart food waste tracker to help you use all the food you buy and reduce food 
 </table>
 
 <br>
+
+---
+
+![Daniel Barclay's github stats](https://github-readme-stats.vercel.app/api?username=barclayd&count_private=true&show_icons=true)
 
 ---
 
