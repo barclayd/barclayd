@@ -245,7 +245,7 @@ alias asb="npm i --save wwu-storybook"
 alias asbc="npm uninstall wwu-storybook && npm i --save wwu-storybook@canary"
 alias @bbc/e2e:local="WEBDRIVER_DRIVER_VERSION=$WEBDRIVER_DRIVER_VERSION WEBDRIVER_BASE_URL=https://sandbox.bbc.co.uk npm run test:e2e"
 alias @bbc/e2e:local:show="WEBDRIVER_DRIVER_VERSION=$(chromedriverversion) WEBDRIVER_BASE_URL=https://sandbox.bbc.co.uk WEBDRIVER_BROWSER=chrome npm run test:e2e"
-alias @bbc/e2e:test="WEBDRIVER_BASE_URL=https://www.test.bbc.co.uk WEBDRIVER_DRIVER_VERSION=$WEBDRIVER_DRIVER_VERSION npm run test:e2e"
+alias @bbc/e2e:test="WEBDRIVER_BASE_URL=https://www.test.bbc.co.uk WEBDRIVER_DRIVER_VERSION=$WEBDRIVER_DRIVER_VERSION npm run test:e2e" 
 
 # browserstack
 
@@ -268,6 +268,11 @@ fi
 }
 
 export PATH="/usr/local/opt/postgresql@10/bin:$PATH"
+
+
+# Open Webstorm - workaround for new projects not launching in webstorm when using web storm terminal command
+# Opens current directory in webstorm
+alias webstorm="open -a /Applications/WebStorm.app ."
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="/Users/barcld01/.sdkman"
