@@ -104,10 +104,6 @@ source $ZSH/oh-my-zsh.sh
   autoload -U promptinit; promptinit
   prompt spaceship
 
-
-# morph modules set up
-alias mpm="npm --registry https://npm.morph.int.tools.bbc.co.uk --cert=\"$(cat /etc/pki/certificate.pem)\" --key=\"$(cat /etc/pki/certificate.pem)\" --cafile=/etc/pki/tls/certs/ca-bundle.crt"
-
 # postgres
 
 alias pg_start="launchctl load ~/Library/LaunchAgents/homebrew.mxcl.postgresql.plist"
@@ -243,9 +239,7 @@ alias gs="git status"
 alias rsb="npm uninstall wwu-storybook"
 alias asb="npm i --save wwu-storybook"
 alias asbc="npm uninstall wwu-storybook && npm i --save wwu-storybook@canary"
-alias @bbc/e2e:local="WEBDRIVER_DRIVER_VERSION=$WEBDRIVER_DRIVER_VERSION WEBDRIVER_BASE_URL=https://sandbox.bbc.co.uk npm run test:e2e"
-alias @bbc/e2e:local:show="WEBDRIVER_DRIVER_VERSION=$(chromedriverversion) WEBDRIVER_BASE_URL=https://sandbox.bbc.co.uk WEBDRIVER_BROWSER=chrome npm run test:e2e"
-alias @bbc/e2e:test="WEBDRIVER_BASE_URL=https://www.test.bbc.co.uk WEBDRIVER_DRIVER_VERSION=$WEBDRIVER_DRIVER_VERSION npm run test:e2e" 
+alias afc="npm uninstall wwu-formio && npm i --save wwu-formio@canary"
 
 # browserstack
 
@@ -277,3 +271,16 @@ alias webstorm="open -a /Applications/WebStorm.app ."
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="/Users/barcld01/.sdkman"
 [[ -s "/Users/barcld01/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/barcld01/.sdkman/bin/sdkman-init.sh"
+
+# GitHub CLI
+
+alias pr:merge="gh pr merge -m -d && gl"
+
+pr:create() {
+if [ "$1" != "" ]
+then
+	gh pr create -t "$1" -b "$2"
+else
+	echo Please provide a PR title
+fi
+}
