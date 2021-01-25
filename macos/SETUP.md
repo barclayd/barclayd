@@ -53,7 +53,7 @@ Setup global shortcuts
 
 ### Terminal
 
-#### Homebrew
+* [Homebrew](https://brew.sh/)
 
 
 
@@ -70,17 +70,53 @@ remove_dock_animation_show_time.sh
 
 ### [Oh My Zsh](https://github.com/ohmyzsh/ohmyzsh)
 
-```shell
+#### [Spaceship](https://github.com/denysdovhan/spaceship-prompt) 🚀
 
+```shell
+git clone https://github.com/denysdovhan/spaceship-prompt.git "$ZSH_CUSTOM/themes/spaceship-prompt" --depth=1
+ln -s "$ZSH_CUSTOM/themes/spaceship-prompt/spaceship.zsh-theme" "$ZSH_CUSTOM/themes/spaceship.zsh-theme" 
 ```
 
+### [Powerline fonts](https://github.com/powerline/fonts) (required for Spaceship) ⚡️
 
+```shell
+git clone https://github.com/powerline/fonts.git --depth=1
+cd fonts
+./install.sh
+cd ..
+rm -rf fonts
+```
+
+#### [Zsh Notifier](https://github.com/marzocchi/zsh-notify) 🚨
+
+```shell
+brew install terminal-notifier
+git clone git@github.com:marzocchi/zsh-notify.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/notifyln -s "$ZSH_CUSTOM/themes/spaceship-prompt/spaceship.zsh-theme" "$ZSH_CUSTOM/themes/spaceship.zsh-theme" 
+```
+
+#### [Autosuggestions](https://github.com/zsh-users/zsh-autosuggestions) 💬
+
+```shell
+git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+```
+
+#### [Syntax Highlighting](https://github.com/zsh-users/zsh-syntax-highlighting) 💅
+
+```shell
+git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+```
+
+#### [History Substring Search](https://github.com/zsh-users/zsh-history-substring-search) 🕰
+
+```shell
+git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+```
 
 ### Developer
 
-- Install homebrew
 - Install Node
-- Install XCode
+  
+* Download XCode from [Mac App Store](https://apps.apple.com/gb/app/xcode/id497799835?mt=12)
 
 ### Github
 
@@ -95,3 +131,11 @@ pbcopy < ~/.ssh/id_ed25519.pub
 ```
 
 Paste copied key into Github
+
+#### Slack
+
+Copy custom Material Dark theme and paste into Slack:
+
+```
+#1A1A1A,#212121,#FF9800,#FFFFFF,#FF9800,#FFFFFF,#2EB67D,#FF9800,#1A1A1A,#727272
+```
