@@ -137,3 +137,11 @@ Copy custom Material Dark theme and paste into Slack:
 ```
 #1A1A1A,#212121,#FF9800,#FFFFFF,#FF9800,#FFFFFF,#2EB67D,#FF9800,#1A1A1A,#727272
 ```
+
+#### Homebrew packages
+
+#### [Github CLI](https://github.com/cli/cli)
+
+```shell
+brew install gh
+```

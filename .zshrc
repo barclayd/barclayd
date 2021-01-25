@@ -2,13 +2,13 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/Users/barcld01/.oh-my-zsh"
+export ZSH="$HOME/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="robbyrussell"
+ZSH_THEME="spaceship"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -100,9 +100,6 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-  # Set Spaceship ZSH as a prompt
-  autoload -U promptinit; promptinit
-  prompt spaceship
 
 # postgres
 
@@ -230,10 +227,6 @@ else
 fi
 }
 
-# chromedriver versioning
-export PATH=$PATH:~/.bin
-WEBDRIVER_DRIVER_VERSION=$(chromedriverversion.sh)
-
 # aliases
 alias gs="git status"
 alias rsb="npm uninstall wwu-storybook"
@@ -268,10 +261,6 @@ export PATH="/usr/local/opt/postgresql@10/bin:$PATH"
 # Opens current directory in webstorm
 alias webstorm="open -a /Applications/WebStorm.app ."
 
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="/Users/barcld01/.sdkman"
-[[ -s "/Users/barcld01/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/barcld01/.sdkman/bin/sdkman-init.sh"
-
 # GitHub CLI
 
 alias pr:merge="gh pr merge -m -d && gl"
@@ -282,5 +271,28 @@ then
 	gh pr create -t "$1" -b "$2"
 else
 	echo Please provide a PR title
+fi
+}
+
+yt () {
+if [ -f "$2" ]
+then
+echo Please provide a YouTube URL
+
+else
+while getopts ":a:v" opt; do
+  case $opt in
+    a)
+      youtube-dl --extract-audio --audio-format mp3 "$2"
+      ;;
+    v)
+      youtube-dl -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/mp4' "$2"
+      ;;
+    \?)
+      echo "Unsupported option" >&2
+      exit 1
+      ;;
+  esac
+done
 fi
 }
