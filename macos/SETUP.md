@@ -55,8 +55,6 @@ Setup global shortcuts
 
 * [Homebrew](https://brew.sh/)
 
-
-
 #### Launch terminal hotkey
 
 1. Install `Launch Terminal.workflow`
