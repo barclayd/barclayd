@@ -15,23 +15,23 @@ cd macos
 
 ### Mac Apps
 
-* [CopyClip](https://apps.apple.com/us/app/copyclip-clipboard-history/id595191960?mt=12)
+- [CopyClip](https://apps.apple.com/us/app/copyclip-clipboard-history/id595191960?mt=12)
 
-#### Divvy
+#### [Divvy](https://apps.apple.com/gb/app/divvy-window-manager/id413857545?mt=12)
 
 Setup global shortcuts
 
 <p align="center">
-<img width="75%" alt="Screenshot 2021-01-24 at 11 58 17" src="https://user-images.githubusercontent.com/39765499/105629561-9d4bbd00-5e3b-11eb-9a6d-4438be7501d8.png">
+<img width="300px" alt="Screenshot 2021-01-24 at 11 58 17" src="https://user-images.githubusercontent.com/39765499/105629561-9d4bbd00-5e3b-11eb-9a6d-4438be7501d8.png">
 </p>
 
 <p align="center">
-<img width="75%" alt="Screenshot 2021-01-24 at 11 57 54" src="https://user-images.githubusercontent.com/39765499/105629564-a0df4400-5e3b-11eb-913f-705e5fabeb4e.png">
+<img width="300px" alt="Screenshot 2021-01-24 at 11 57 54" src="https://user-images.githubusercontent.com/39765499/105629564-a0df4400-5e3b-11eb-913f-705e5fabeb4e.png">
 </p>
 
 - To start automatically on login: System Preferences => Users & Groups => Login Items => select `Divvy` from `Applications`, once added click 'Hide'
 
-### Vanilla
+#### [Vanilla](https://matthewpalmer.net/vanilla)
 
 - open `Launch Vanilla.app`
 - May need to adjust 'Allow apps downloaded from' setting in Security & Privacy in order to open
@@ -51,9 +51,17 @@ Setup global shortcuts
 
 ### Finder
 
+- Open Finder, right click to select 'Customise Toolbar'
+- Open a new Finder windows => navigate to 'Applications'
+- Drag apps that you wish to open code up in (e.g. Webstorm, VSCode, XCode, terminal)
+
+<p align="center">
+<img width="300px" alt="Screenshot 2021-01-24 at 11 57 54" src="https://user-images.githubusercontent.com/39765499/105882836-0b3fe200-5ffe-11eb-937c-7c03b3da6813.png">
+</p>
+
 ### Terminal
 
-* [Homebrew](https://brew.sh/)
+- [Homebrew](https://brew.sh/)
 
 #### Launch terminal hotkey
 
@@ -72,7 +80,7 @@ remove_dock_animation_show_time.sh
 
 ```shell
 git clone https://github.com/denysdovhan/spaceship-prompt.git "$ZSH_CUSTOM/themes/spaceship-prompt" --depth=1
-ln -s "$ZSH_CUSTOM/themes/spaceship-prompt/spaceship.zsh-theme" "$ZSH_CUSTOM/themes/spaceship.zsh-theme" 
+ln -s "$ZSH_CUSTOM/themes/spaceship-prompt/spaceship.zsh-theme" "$ZSH_CUSTOM/themes/spaceship.zsh-theme"
 ```
 
 ### [Powerline fonts](https://github.com/powerline/fonts) (required for Spaceship) ⚡️
@@ -89,7 +97,7 @@ rm -rf fonts
 
 ```shell
 brew install terminal-notifier
-git clone git@github.com:marzocchi/zsh-notify.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/notifyln -s "$ZSH_CUSTOM/themes/spaceship-prompt/spaceship.zsh-theme" "$ZSH_CUSTOM/themes/spaceship.zsh-theme" 
+git clone git@github.com:marzocchi/zsh-notify.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/notifyln -s "$ZSH_CUSTOM/themes/spaceship-prompt/spaceship.zsh-theme" "$ZSH_CUSTOM/themes/spaceship.zsh-theme"
 ```
 
 #### [Autosuggestions](https://github.com/zsh-users/zsh-autosuggestions) 💬
@@ -112,15 +120,21 @@ git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-m
 
 ### Developer
 
-- Install Node
-  
-* Download XCode from [Mac App Store](https://apps.apple.com/gb/app/xcode/id497799835?mt=12)
+- Install [Node](https://nodejs.org/en/)
+
+If you run into permission issues, run:
+
+```shell
+sudo chown -R $USER /usr/local/lib/node_modules
+```
+
+- Download XCode from [Mac App Store](https://apps.apple.com/gb/app/xcode/id497799835?mt=12)
 
 ### Github
 
 #### SSH Keys
 
-* [Add new key](https://github.com/settings/ssh/new)
+- [Add new key](https://github.com/settings/ssh/new)
 
 ```shell
 ssh-keygen -t ed25519 -C "your_email@example.com"
@@ -145,3 +159,30 @@ Copy custom Material Dark theme and paste into Slack:
 ```shell
 brew install gh
 ```
+
+#### Others
+
+```shell
+brew install youtube-dl
+```
+
+```shell
+brew install ffmpeg
+```
+
+### Docker
+
+- Download and install [Docker for Mac](https://hub.docker.com/editions/community/docker-ce-desktop-mac/)
+
+### Webstorm
+
+#### Prettier
+
+- Open Webstorm, go to Preferences => External Tools
+- Copy the [Prettier tool](https://github.com/barclayd/barclayd/tree/master/webstorm/Prettier.xml) xml file into webstorm as a new external tool
+- Ensure key mapping is setup
+- Ensure no projects are open, go to Preferences => Prettier and ensure both 'on code reformat' and 'on save' options are checked. Click 'Apply'
+
+#### ESLint
+
+- Ensure no projects are open, go to Preferences => ESLint and ensure 'automatic ESLint configuration' is selected. Click 'Apply'
