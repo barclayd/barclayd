@@ -1,6 +1,6 @@
 ### Welcome to my Github 👨🏻‍💻
 
-I'm a fullstack software engineer, currently working at [Moonpig](https://github.com/moonpig), who's passionate about creating and maintaining high quality software solutions for both the web and Apple's ecoystem (iOS/macOS/watchOS/iPadOS) to solve real world issues.
+I'm a fullstack software engineer who's passionate about creating and maintaining high quality software solutions for both the web and Apple's ecoystem (iOS/macOS/watchOS/iPadOS) to solve real world issues.
 
 ## My Active Projects
 
