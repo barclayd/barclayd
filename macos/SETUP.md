@@ -193,3 +193,7 @@ brew install ffmpeg
 
 - [Swift Format](https://github.com/nicklockwood/SwiftFormat)
 - [XCode duplicate line keymapping](https://gist.github.com/emotality/b1bcb2bb8a07921f9c8cad1c969daedf)
+
+### Other
+
+- If items saved to Desktop are not displaying run `show_desktop_icons.sh`
