@@ -34,7 +34,7 @@ Setup global shortcuts
 #### [Vanilla](https://matthewpalmer.net/vanilla)
 
 - open `Launch Vanilla.app`
-- May need to adjust 'Allow apps downloaded from' setting in Security & Privacy in order to open
+- You may need to adjust 'Allow apps downloaded from' setting in Security & Privacy in order to open
 - Drag `Launch Vanilla.app` into `Applications`
 - To start automatically on login: System Preferences => Users & Groups => Login Items => select `Launch Vanilla` from `Applications`, once added click 'Hide'
 
@@ -54,6 +54,7 @@ Setup global shortcuts
 - Open Finder, right click to select 'Customise Toolbar'
 - Open a new Finder windows => navigate to 'Applications'
 - Drag apps that you wish to open code up in (e.g. Webstorm, VSCode, XCode, terminal)
+- Enable "Show Path Bar"
 
 <p align="center">
 <img width="300px" alt="Screenshot 2021-01-24 at 11 57 54" src="https://user-images.githubusercontent.com/39765499/105882836-0b3fe200-5ffe-11eb-937c-7c03b3da6813.png">
@@ -129,6 +130,7 @@ sudo chown -R $USER /usr/local/lib/node_modules
 ```
 
 - Download XCode from [Mac App Store](https://apps.apple.com/gb/app/xcode/id497799835?mt=12)
+- Download [Postman](https://www.postman.com/downloads/)
 
 ### Github
 
@@ -186,3 +188,8 @@ brew install ffmpeg
 #### ESLint
 
 - Ensure no projects are open, go to Preferences => ESLint and ensure 'automatic ESLint configuration' is selected. Click 'Apply'
+
+### Swift Development
+
+- [Swift Format](https://github.com/nicklockwood/SwiftFormat)
+- [XCode duplicate line keymapping](https://gist.github.com/emotality/b1bcb2bb8a07921f9c8cad1c969daedf)
