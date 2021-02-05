@@ -68,7 +68,14 @@ ZSH_THEME="spaceship"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=( git alias-finder notify zsh-autosuggestions zsh-syntax-highlighting history-substring-search)
+plugins=(
+	git
+	alias-finder
+	# notify
+	zsh-autosuggestions
+	zsh-syntax-highlighting
+# 	history-substring-search
+)
 
 ZSH_ALIAS_FINDER_AUTOMATIC=true
 
@@ -117,53 +124,11 @@ fi
 	cd "$1"
     if [ "$2" != "" ]
     then
-        git clone "$2" .
+        git clone "$2" . || cd.. && rm -rf "$1"
     else
         echo Please enter an SSH
     fi
 }
-
-# change name here - for changing git authoring
-
-cnh() {
-
-if [ "$1" != "" ]
-then
-	mkdir "$1"
-fi
-	cd "$1"
-    if [ "$2" != "" ]
-    then
-        git clone "$2" .
-    else
-        echo Please enter an SSH
-    fi
-git filter-branch --env-filter '
-
-OLD_EMAIL="daniel@urbanintel.io"
-CORRECT_NAME="Daniel Barclay"
-CORRECT_EMAIL="barclaysd@me.com"
-
-if [ "$GIT_COMMITTER_EMAIL" = "$OLD_EMAIL" ]
-then
-    export GIT_COMMITTER_NAME="$CORRECT_NAME"
-    export GIT_COMMITTER_EMAIL="$CORRECT_EMAIL"
-fi
-if [ "$GIT_AUTHOR_EMAIL" = "$OLD_EMAIL" ]
-then
-    export GIT_AUTHOR_NAME="$CORRECT_NAME"
-    export GIT_AUTHOR_EMAIL="$CORRECT_EMAIL"
-fi
-' --tag-name-filter cat -- --branches --tags
-
-git push origin +master
-cd ..
-rm -rf "$1"
-}
-
-# dev certs for mozart
-export DEV_CERT_PEM="/etc/pki/certificate.pem"
-export DEV_CA_PEM="/etc/pki/cloud-ca.pem"
 
 # checkout new branch
 
@@ -239,27 +204,10 @@ alias afc="npm uninstall wwu-formio && npm i --save wwu-formio@canary"
 export BROWSERSTACK_USER="chriskay2"
 export BROWSERSTACK_KEY="keghnhNtSKeoukaqtmyE"
 
-# migrate from bitbucket to GitHub
-
-mtg() {
-if [ "$1" != "" ]
-then
-	gch "$1" "$2"
-	git remote add upstream "$3"
-	git push upstream master
-	git push origin --all
-	git push --tags upstream
-	cd ..
-	rm -rf "$1"
-fi
-}
-
-export PATH="/usr/local/opt/postgresql@10/bin:$PATH"
-
-
 # Open Webstorm - workaround for new projects not launching in webstorm when using web storm terminal command
 # Opens current directory in webstorm
 alias webstorm="open -a /Applications/WebStorm.app ."
+alias xcode="open -a /Applications/Xcode.app ."
 
 # GitHub CLI
 
@@ -296,3 +244,7 @@ while getopts ":a:v" opt; do
 done
 fi
 }
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion

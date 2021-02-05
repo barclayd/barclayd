@@ -5,6 +5,16 @@ git clone https://github.com/barclayd/barclayd
 cd macos
 ```
 
+### Setup tracking for .zshrc via Symlink
+
+Run the following command from the root directory to automatically track changes to `.zshrc`
+
+```shell
+ln -s ~/<PATH_TO_THIS_REPO>/.zshrc ~/.zshrc
+```
+
+This will create a symlinked version of the tracked `.zshrc` available in your root directory
+
 ### System Preferences
 
 - Mission Control => Hot corners - bottom right = 'Put Display to Sleep'
@@ -63,6 +73,15 @@ Setup global shortcuts
 ### Terminal
 
 - [Homebrew](https://brew.sh/)
+
+Setups to install Homebrew, preconfigured with basic packages:
+
+```shell
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+brew bundle --file ~/<PATH_TO_THIS_REPO>/macos/Brewfile
+cd ~/<PATH_TO_THIS_REPO>
+brew bundle
+```
 
 #### Launch terminal hotkey
 
