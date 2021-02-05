@@ -1,0 +1,10 @@
+tap "homebrew/bundle"
+tap "homebrew/core"
+# Play, record, convert, and stream audio and video
+brew "ffmpeg"
+# GitHub command-line tool
+brew "gh"
+# Send macOS User Notifications from the command-line
+brew "terminal-notifier"
+# Download YouTube videos from the command-line
+brew "youtube-dl"
