@@ -117,14 +117,25 @@ alias pg_stop="launchctl unload ~/Library/LaunchAgents/homebrew.mxcl.postgresql.
 
 gch() {
 
-if [ "$1" != "" ]
+if [ "$2" != "" ]
 then
-	mkdir "$1"
+	mkdir "$2"
 fi
-	cd "$1"
-    if [ "$2" != "" ]
+	cd "$2"
+    if [ "$3" != "" ]
     then
-        git clone "$2" . || cd.. && rm -rf "$1"
+        git clone "$3" . || cd.. && rm -rf "$2"
+        while getopts ":w" opt; do
+          case $opt in
+            w)
+              webstorm
+              ;;
+            \?)
+              echo "Unsupported option" >&2
+              exit 1
+              ;;
+          esac
+        done
     else
         echo Please enter an SSH
     fi
@@ -243,6 +254,27 @@ while getopts ":a:v" opt; do
   esac
 done
 fi
+}
+
+spotify() {
+if [ -f "$1" ]
+then
+echo Please provide an artist name
+exit 1
+fi
+if [ -f "$2" ]
+then
+echo Please provide an album name
+exit 1
+fi
+if [ -f "$3" ]
+then
+echo Please provide a YouTube URL
+exit 1
+fi
+mkdir "$1" && cd "$1"
+mkdir "$2" && cd "$2"
+yt -a "$3"
 }
 
 export NVM_DIR="$HOME/.nvm"
