@@ -213,6 +213,15 @@ brew install ffmpeg
 - [Swift Format](https://github.com/nicklockwood/SwiftFormat)
 - [XCode duplicate line keymapping](https://gist.github.com/emotality/b1bcb2bb8a07921f9c8cad1c969daedf)
 
+### Custom app keyboard shortcuts
+
+* Follow the screenshot below to add custom app keyboard shortcuts that are missing to installed Mac applications
+* Ensure menu option names match exactly
+
+<p align="center">
+<img width="500" alt="mac keyboard shortcuts" src="https://user-images.githubusercontent.com/39765499/112757733-f32b1580-8fe2-11eb-9483-136a37f6461f.png">
+</p>
+
 ### Other
 
 - If items saved to Desktop are not displaying run `show_desktop_icons.sh`
