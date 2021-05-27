@@ -113,32 +113,57 @@ source $ZSH/oh-my-zsh.sh
 alias pg_start="launchctl load ~/Library/LaunchAgents/homebrew.mxcl.postgresql.plist"
 alias pg_stop="launchctl unload ~/Library/LaunchAgents/homebrew.mxcl.postgresql.plist"
 
+# Open Webstorm - workaround for new projects not launching in webstorm when using web storm terminal command
+# Opens current directory in webstorm
+alias webstorm="open -a /Applications/WebStorm.app ."
+alias xcode="open -a /Applications/Xcode.app ."
+
+# GitHub CLI
+
+alias pr:merge="gh pr merge -m -d && gl"
+
 # git clone here
 
 gch() {
-
-if [ "$2" != "" ]
-then
-	mkdir "$2"
-fi
-	cd "$2"
-    if [ "$3" != "" ]
-    then
-        git clone "$3" . || cd.. && rm -rf "$2"
-        while getopts ":w" opt; do
+isOpenInWebstorm=false
+folderName=""
+ssh=""
+while getopts ":w" opt; do
           case $opt in
             w)
-              webstorm
+              isOpenInWebstorm=true
               ;;
             \?)
-              echo "Unsupported option" >&2
-              exit 1
               ;;
           esac
         done
-    else
-        echo Please enter an SSH
-    fi
+if [ "$isOpenInWebstorm" = true ] ;
+then
+    folderName="$2"
+    ssh="$3"
+else
+    folderName="$1"
+    ssh="$2"
+fi
+if [ "$folderName" != "" ] ;
+then
+    mkdir "$folderName"
+else
+    echo "Missing folder name"
+    exit 1
+fi
+cd "$folderName"
+if [ "$ssh" != "" ] ;
+then
+  git clone "$ssh" .
+else
+  echo "Please enter an SSH"
+  exit 1
+fi
+if [ "$isOpenInWebstorm" = true ] ;
+then
+    webstorm
+fi
 }
 
 # checkout new branch
@@ -214,15 +239,6 @@ alias afc="npm uninstall wwu-formio && npm i --save wwu-formio@canary"
 
 export BROWSERSTACK_USER="chriskay2"
 export BROWSERSTACK_KEY="keghnhNtSKeoukaqtmyE"
-
-# Open Webstorm - workaround for new projects not launching in webstorm when using web storm terminal command
-# Opens current directory in webstorm
-alias webstorm="open -a /Applications/WebStorm.app ."
-alias xcode="open -a /Applications/Xcode.app ."
-
-# GitHub CLI
-
-alias pr:merge="gh pr merge -m -d && gl"
 
 pr:create() {
 if [ "$1" != "" ]
