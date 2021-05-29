@@ -178,55 +178,46 @@ else
 fi
 }
 
-grfb() {
-if [ "$1" != "" ]
-then
-	if [ "$2" != "" ]
-	then
-	gco "$2"
-	else
-	echo please enter a base branch name
-	fi
-	git pull origin "$2" --rebase
-	gco "$1"
-	git rebase "$2"
-else
-	echo Please enter the name of the branch to be rebased
-fi
-}
-
 # bump-to-latest
 
 bump() {
-if [ "$1" != "" ]
+version=""
+package=""
+isDevDependency=false
+
+while getopts ":d" opt; do
+          case $opt in
+            d)
+              isDevDependency=true
+              ;;
+          esac
+        done
+if [ "$isDevDependency" = true ] ;
 then
-	if [ "$2" != "" ]
-	then
-		npm uninstall "$2" && npm i --save "$2"@"$1"
-	else
-	echo please provide a package name
-	fi
+    version="$2"
+    package="$3"
 else
-	echo Please provide a version tag
+    version="$1"
+    package="$2"
+fi
+if [ "$version" = "" ] ;
+then
+    echo "Missing version"
+    exit 1
+fi
+if [ "$package" = "" ] ;
+then
+    echo "Missing package"
+    exit 1
+fi
+if [ "$isDevDependency" = true ] ;
+then
+    npm uninstall "$2" && npm i -D "$package"@"$latest"
+else
+    npm uninstall "$2" && npm i -S "$package"@"$latest"
 fi
 }
 
-
-# bump-to-latest
-
-bump-dev() {
-if [ "$1" != "" ]
-then
-	if [ "$2" != "" ]
-	then
-		npm uninstall "$2" && npm i --save-dev "$2"@"$1"
-	else
-	echo please provide a package name
-	fi
-else
-	echo Please provide a version tag
-fi
-}
 
 # aliases
 alias gs="git status"
