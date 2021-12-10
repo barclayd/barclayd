@@ -8,3 +8,5 @@ brew "gh"
 brew "terminal-notifier"
 # Download YouTube videos from the command-line
 brew "youtube-dl"
+brew "python"
+brew "kid3"
