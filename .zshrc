@@ -249,7 +249,7 @@ else
 while getopts ":a:v" opt; do
   case $opt in
     a)
-      youtube-dl --extract-audio --audio-format mp3 "$2"
+      youtube-dl --add-header 'Cookie:' --extract-audio --audio-format mp3 "$2"
       ;;
     v)
       youtube-dl -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/mp4' "$2"
@@ -264,24 +264,68 @@ fi
 }
 
 spotify() {
-if [ -f "$1" ]
+artist=""
+album=""
+title=""
+youtubeURL=""
+while getopts ":s" opt; do
+          case $opt in
+            s)
+              title=$2
+              album=$2
+              artist="$3"
+              youtubeURL="$4"
+              ;;
+            \?)
+            echo "Unsupported option" >&2
+            return
+            ;;
+          esac
+        done
+if [ "$1" != "-s" ]
 then
-echo Please provide an artist name
-exit 1
+    title=$1
+    artist="$2"
+    album="$3"
+    youtubeURL="$4"
 fi
-if [ -f "$2" ]
+if [ "$artist" = "" ]
 then
-echo Please provide an album name
-exit 1
+echo Please provide the artist name
+return
 fi
-if [ -f "$3" ]
+if [ "$album" = "" ]
+then
+echo Please provide the album name
+return
+fi
+if [ "$title" = "" ]
+then
+echo Please provide the song title
+return
+fi
+if [ "$youtubeURL" = "" ]
 then
 echo Please provide a YouTube URL
-exit 1
+return
 fi
-mkdir "$1" && cd "$1"
-mkdir "$2" && cd "$2"
-yt -a "$3"
+printf "\e\n[94mDownloading song from YouTube 🎵\n"
+mkdir "$artist" && cd "$artist"
+mkdir "$album" && cd "$album"
+yt -a "$youtubeURL"
+printf "\e\n[94mSong successfully downloaded! 🪄\n"
+printf "\e\n[92mAdding to Spotify 🚀\n"
+for file in *.mp3; do mv "$file" "$title.mp3" ; done
+songId=${youtubeURL#*=}
+kid3-cli -c "set title $title" \
+         -c "set albumart 'https://img.youtube.com/vi/$songId/0.jpg'" \
+         -c "set artist '$artist'" \
+         -c "set album '$album'" \
+         ./"$title.mp3"
+cd ~
+mv ~/"$artist"/ ~/Music/Music/Media.localized/Music/
+cd ~/Music/Music/Media.localized/Music/"$artist"/"$album"
+printf "\e\n[92m$title by $artist is ready on Spotify 💥\n"
 }
 
 export NVM_DIR="$HOME/.nvm"
