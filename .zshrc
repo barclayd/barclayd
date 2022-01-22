@@ -335,8 +335,12 @@ numberOfUnpushedCommits=$(git log @{u}.. 2>/dev/null | wc -l | xargs)
 if [ "$numberOfUnpushedCommits" -gt 0 ] ;
 then
   echo "Pushing up additional commits"
-  git push
+  git push --set-upstream origin "$currentBranchName"
 fi
+}
+
+gpe() {
+gitPushEverything
 }
 
 export NVM_DIR="$HOME/.nvm"
