@@ -335,7 +335,7 @@ numberOfUnpushedCommits=$(git log @{u}.. 2>/dev/null | wc -l | xargs)
 if [ "$numberOfUnpushedCommits" -gt 0 ] ;
 then
   echo "Pushing up additional commits"
-  git push --set-upstream origin "$currentBranchName"
+  HUSKY=0 git push --set-upstream origin "$currentBranchName"
 fi
 }
 
