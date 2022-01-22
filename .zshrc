@@ -328,6 +328,23 @@ cd ~/Music/Music/Media.localized/Music/"$artist"/"$album"
 printf "\e\n[92m$title by $artist is ready on Spotify 💥\n"
 }
 
+gitPushEverything() {
+currentBranchName=$(git rev-parse --abbrev-ref HEAD)
+git push --set-upstream origin "$currentBranchName"
+numberOfUnpushedCommits=$(git log @{u}.. 2>/dev/null | wc -l | xargs)
+if [ "$numberOfUnpushedCommits" -gt 0 ] ;
+then
+  echo "Pushing up additional commits"
+  HUSKY=0 git push --set-upstream origin "$currentBranchName"
+fi
+}
+
+gpe() {
+gitPushEverything
+}
+
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+export MNPG_NPM_REGISTRY_API_KEY=deed5c9f-2998-48f8-9dbf-3a5ba5012443
