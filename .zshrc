@@ -330,8 +330,13 @@ printf "\e\n[92m$title by $artist is ready on Spotify 💥\n"
 
 gitPushEverything() {
 currentBranchName=$(git rev-parse --abbrev-ref HEAD)
-git push
-
+git push --set-upstream origin "$currentBranchName"
+numberOfUnpushedCommits=$(git log @{u}.. 2>/dev/null | wc -l | xargs)
+if [ "$numberOfUnpushedCommits" -gt 0 ] ;
+then
+  echo "Pushing up additional commits"
+  git push
+fi
 }
 
 export NVM_DIR="$HOME/.nvm"
