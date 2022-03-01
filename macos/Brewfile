@@ -1,5 +1,6 @@
 tap "homebrew/bundle"
 tap "homebrew/core"
+tap "hashicorp/tap"
 # Play, record, convert, and stream audio and video
 brew "ffmpeg"
 # GitHub command-line tool
@@ -10,3 +11,5 @@ brew "terminal-notifier"
 brew "youtube-dl"
 brew "python"
 brew "kid3"
+brew "awscli"
+brew "hashicorp/tap/terraform"
