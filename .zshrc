@@ -355,7 +355,6 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-export MNPG_NPM_REGISTRY_API_KEY=deed5c9f-2998-48f8-9dbf-3a5ba5012443
 
 export PATH_TO_JAVAFX="/Users/daniel.barclay/Documents/Moonpig/Libraries/javafx-sdk-17.0.2/lib"
 
