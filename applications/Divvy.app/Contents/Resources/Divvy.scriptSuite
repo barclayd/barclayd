@@ -1,0 +1,11 @@
+{
+	Name = Divvy;
+	AppleEventCode = GURL;
+	Commands = {
+		GetURL = {
+			CommandClass = URLCommand;
+			AppleEventCode = GURL;
+			AppleEventClassCode = GURL;
+		};
+	};
+}
