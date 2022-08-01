@@ -343,6 +343,18 @@ gpe() {
 gitPushEverything
 }
 
+assumeMoonpigRole() {
+  . ./Documents/Moonpig/ops-scripts/Scripts/AWS/assumescript.sh arn:aws:iam::852458254726:mfa/daniel.barclay@moonpig.com
+}
+
+# export PATH=$HOME/Documents/Moonpig/local-dev/bash:$PATH
+
+alias mp-docker-deploy-aws='$HOME/Documents/Moonpig/local-dev/bash/run-docker-container.sh -u daniel.barclay -p $(cat ~/credentials/gitlab-token) -i deploy-aws -t tf1.1-latest'
+
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+
+export PATH_TO_JAVAFX="/Users/daniel.barclay/Documents/Moonpig/Libraries/javafx-sdk-17.0.2/lib"
+
