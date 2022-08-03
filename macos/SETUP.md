@@ -2,7 +2,6 @@
 
 ```shell
 git clone https://github.com/barclayd/barclayd
-cd macos
 ```
 
 ### Setup tracking for .zshrc via Symlink
@@ -51,13 +50,11 @@ Setup global shortcuts
 ### Chrome Dev Tools
 
 - Ensure [Material Theme Collection](https://chrome.google.com/webstore/detail/material-devtools-theme-c/jmefikbdhgocdjeejjnnepgnfkkbpgjo) is installed
-- Go to chrome://flags
-- Look for "Developer Tools experiments"
-- Enable it and restart Chrome
 - Open Developer Tools
-- Settings > Experiments > "Allow Custom UI Themes"
-- Settings > Preferences > Themes -> "Dark"
-- Close and reopen DevTools
+- Open the Settings:
+    - > Experiments > "Allow extensions to load custom stylesheets"
+    - > Preferences -> Theme -> Dark
+- Close and reopen the DevTools
 
 ### Finder
 
@@ -72,6 +69,10 @@ Setup global shortcuts
 
 ### Terminal
 
+##### Theme
+
+Terminal -> Preferences -> Import -> ~/<PATH_TO_THIS_REPO>/macos/Terminal Theme/MaterialDarker.terminal
+
 - [Homebrew](https://brew.sh/)
 
 Setups to install Homebrew, preconfigured with basic packages:
@@ -79,8 +80,6 @@ Setups to install Homebrew, preconfigured with basic packages:
 ```shell
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 brew bundle --file ~/<PATH_TO_THIS_REPO>/macos/Brewfile
-cd ~/<PATH_TO_THIS_REPO>
-brew bundle
 ```
 
 #### Launch terminal hotkey
@@ -96,11 +95,16 @@ remove_dock_animation_show_time.sh
 
 ### [Oh My Zsh](https://github.com/ohmyzsh/ohmyzsh)
 
+##### Installation
+
+```shell
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+```
+
 #### [Spaceship](https://github.com/denysdovhan/spaceship-prompt) 🚀
 
 ```shell
 git clone https://github.com/denysdovhan/spaceship-prompt.git "$ZSH_CUSTOM/themes/spaceship-prompt" --depth=1
-ln -s "$ZSH_CUSTOM/themes/spaceship-prompt/spaceship.zsh-theme" "$ZSH_CUSTOM/themes/spaceship.zsh-theme"
 ```
 
 ### [Powerline fonts](https://github.com/powerline/fonts) (required for Spaceship) ⚡️
@@ -117,7 +121,7 @@ rm -rf fonts
 
 ```shell
 brew install terminal-notifier
-git clone git@github.com:marzocchi/zsh-notify.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/notifyln -s "$ZSH_CUSTOM/themes/spaceship-prompt/spaceship.zsh-theme" "$ZSH_CUSTOM/themes/spaceship.zsh-theme"
+git clone https://github.com/marzocchi/zsh-notify.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/notify
 ```
 
 #### [Autosuggestions](https://github.com/zsh-users/zsh-autosuggestions) 💬
@@ -129,7 +133,7 @@ git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-m
 #### [Syntax Highlighting](https://github.com/zsh-users/zsh-syntax-highlighting) 💅
 
 ```shell
-git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 ```
 
 #### [History Substring Search](https://github.com/zsh-users/zsh-history-substring-search) 🕰
@@ -140,12 +144,25 @@ git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-m
 
 ### Developer
 
-- Install [Node](https://nodejs.org/en/)
 
-If you run into permission issues, run:
+#### Node
+
+- Install via NVM [NVM](https://github.com/nvm-sh/nvm)
 
 ```shell
-sudo chown -R $USER /usr/local/lib/node_modules
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
+```
+
+Restart terminal after completing command and verify installation by running:
+
+```shell
+nvm -v
+```
+
+- Install Node 16 via NVM as default
+
+```shell
+nvm install 16 --default
 ```
 
 - Download XCode from [Mac App Store](https://apps.apple.com/gb/app/xcode/id497799835?mt=12)
@@ -165,6 +182,24 @@ pbcopy < ~/.ssh/id_ed25519.pub
 
 Paste copied key into Github
 
+##### If facing issues with git cloning a repository do the following:
+
+Issue:
+
+```shell
+The authenticity of host 'github.com' can't be established.
+ECDSA key fingerprint is SHA256:Gqa14BKiB8EhFtUBGrtb4LA2M2Y6D6rpJTMXq7oplD8.
+This key is not known by any other names
+```
+
+Fix:
+
+```shell
+ssh-keyscan github.com >> ~/.ssh/known_hosts
+```
+
+Note that the host name can be swapped out in both commands depending on the base domain of the repo you are cloning
+
 #### Slack
 
 Copy custom Material Dark theme and paste into Slack:
@@ -175,21 +210,7 @@ Copy custom Material Dark theme and paste into Slack:
 
 #### Homebrew packages
 
-#### [Github CLI](https://github.com/cli/cli)
-
-```shell
-brew install gh
-```
-
-#### Others
-
-```shell
-brew install youtube-dl
-```
-
-```shell
-brew install ffmpeg
-```
+Will be auto installed following the running of Homebrew setup
 
 ### Docker
 
