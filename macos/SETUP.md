@@ -237,7 +237,9 @@ Will be auto installed following the running of Homebrew setup
 ### Custom app keyboard shortcuts
 
 * Follow the screenshot below to add custom app keyboard shortcuts that are missing to installed Mac applications
-* Ensure menu option names match exactly
+* Ensure menu option names match exactly:
+    - Menu Title: `Duplicate tab`
+* Assign to <kbd>control</kbd> + <kbd>⇧</kbd> + <kbd>D</kbd>
 
 <p align="center">
 <img width="500" alt="mac keyboard shortcuts" src="https://user-images.githubusercontent.com/39765499/112757733-f32b1580-8fe2-11eb-9483-136a37f6461f.png">
