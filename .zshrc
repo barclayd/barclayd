@@ -71,10 +71,10 @@ ZSH_THEME="spaceship"
 plugins=(
 	git
 	alias-finder
-	# notify
 	zsh-autosuggestions
 	zsh-syntax-highlighting
-# 	history-substring-search
+	history-substring-search
+    notify
 )
 
 ZSH_ALIAS_FINDER_AUTOMATIC=true
@@ -194,15 +194,15 @@ while getopts ":d" opt; do
         done
 if [ "$isDevDependency" = true ] ;
 then
-    version="$2"
-    package="$3"
-else
-    version="$1"
     package="$2"
+    version="$3"
+else
+    package="$1"
+    version="$2"
 fi
 if [ "$version" = "" ] ;
 then
-    echo "Missing version"
+    version="latest"
     exit 1
 fi
 if [ "$package" = "" ] ;
@@ -212,9 +212,9 @@ then
 fi
 if [ "$isDevDependency" = true ] ;
 then
-    npm uninstall "$2" && npm i -D "$package"@"$latest"
+    npm uninstall "$package" && npm i -D "$package"@"$version"
 else
-    npm uninstall "$2" && npm i -S "$package"@"$latest"
+    npm uninstall "$package" && npm i -S "$package"@"$version"
 fi
 }
 
@@ -358,3 +358,4 @@ export NVM_DIR="$HOME/.nvm"
 
 export PATH_TO_JAVAFX="/Users/daniel.barclay/Documents/Moonpig/Libraries/javafx-sdk-17.0.2/lib"
 
+export NODE_EXTRA_CA_CERTS="/Users/5595657/combined_certs.pem"
