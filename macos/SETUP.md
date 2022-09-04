@@ -4,7 +4,7 @@
 git clone https://github.com/barclayd/barclayd
 ```
 
-### Setup tracking for .zshrc via Symlink
+### Setup tracking for `.zshrc` via Symlink
 
 Run the following command from the root directory to automatically track changes to `.zshrc`
 
@@ -12,7 +12,14 @@ Run the following command from the root directory to automatically track changes
 ln -s ~/<PATH_TO_THIS_REPO>/.zshrc ~/.zshrc
 ```
 
-This will create a symlinked version of the tracked `.zshrc` available in your root directory
+### Setup tracking for `.gitignore` via Symlink to global `.gitignore`
+
+```shell
+ln -s ~/<PATH_TO_THIS_REPO>/.gitignore ~/.gitignore_global
+git config --global core.excludesfile ~/.gitignore_global
+```
+
+This will create a symlinked version of the tracked `.zshrc` and `.gitignore` available in your root directory
 
 ### System Preferences
 
@@ -52,8 +59,11 @@ Setup global shortcuts
 - Ensure [Material Theme Collection](https://chrome.google.com/webstore/detail/material-devtools-theme-c/jmefikbdhgocdjeejjnnepgnfkkbpgjo) is installed
 - Open Developer Tools
 - Open the Settings:
-    - > Experiments > "Allow extensions to load custom stylesheets"
-    - > Preferences -> Theme -> Dark
+  - > Experiments > "Allow extensions to load custom stylesheets"
+  - > Preferences -> Theme -> Dark
+  - > Experiments > "Allow extensions to load custom stylesheets"
+  - > Preferences -> Theme -> Dark
+
 - Close and reopen the DevTools
 
 ### Finder
@@ -207,6 +217,10 @@ Copy custom Material Dark theme and paste into Slack:
 ```
 #1A1A1A,#212121,#FF9800,#FFFFFF,#FF9800,#FFFFFF,#2EB67D,#FF9800,#1A1A1A,#727272
 ```
+
+#### Homebrew packages
+
+Will be auto installed following the running of Homebrew setup
 
 #### Homebrew packages
 

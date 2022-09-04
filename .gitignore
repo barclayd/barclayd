@@ -1,2 +1,58 @@
+# IDEs
+.vscode
 .idea
+
+# MacOS
 .DS_Store
+
+# Custom ignored files
+
+*.ignored.*
+*.ignored
+
+# Build Output
+dist
+build
+
+# Test output
+coverage
+e2e/screenshots
+e2e/videos
+
+# Schema generation output
+__generated__
+
+# node
+node_modules
+
+# yarn
+.yarn/*
+yarn-error.log
+
+# terraform
+.terraform
+.terraform.lock.hcl
+*.tfstate
+*.tfstate.*
+*.tfplan
+*.tfoutput
+
+# npm
+.npmrc
+
+# Next
+.next
+.next.*
+_next
+
+# .env
+.env.local
+.env.*.local
+
+# eslint
+.eslintcache
+
+# storybook
+
+.storybook-out
+storybook-out
