@@ -203,7 +203,6 @@ fi
 if [ "$version" = "" ] ;
 then
     version="latest"
-    exit 1
 fi
 if [ "$package" = "" ] ;
 then
@@ -221,15 +220,7 @@ fi
 
 # aliases
 alias gs="git status"
-alias rsb="npm uninstall wwu-storybook"
-alias asb="npm i --save wwu-storybook"
-alias asbc="npm uninstall wwu-storybook && npm i --save wwu-storybook@canary"
-alias afc="npm uninstall wwu-formio && npm i --save wwu-formio@canary"
-
-# browserstack
-
-export BROWSERSTACK_USER="chriskay2"
-export BROWSERSTACK_KEY="keghnhNtSKeoukaqtmyE"
+alias guc="git reset --soft HEAD^"
 
 pr:create() {
 if [ "$1" != "" ]
@@ -343,19 +334,11 @@ gpe() {
 gitPushEverything
 }
 
-assumeMoonpigRole() {
-  . ./Documents/Moonpig/ops-scripts/Scripts/AWS/assumescript.sh arn:aws:iam::852458254726:mfa/daniel.barclay@moonpig.com
-}
-
 # export PATH=$HOME/Documents/Moonpig/local-dev/bash:$PATH
-
-alias mp-docker-deploy-aws='$HOME/Documents/Moonpig/local-dev/bash/run-docker-container.sh -u daniel.barclay -p $(cat ~/credentials/gitlab-token) -i deploy-aws -t tf1.1-latest'
-
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 
-export PATH_TO_JAVAFX="/Users/daniel.barclay/Documents/Moonpig/Libraries/javafx-sdk-17.0.2/lib"
-
 export NODE_EXTRA_CA_CERTS="/Users/5595657/combined_certs.pem"
+export REQUESTS_CA_BUNDLE="/Users/5595657/combined_certs.pem"
