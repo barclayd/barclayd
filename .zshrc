@@ -118,6 +118,12 @@ alias pg_stop="launchctl unload ~/Library/LaunchAgents/homebrew.mxcl.postgresql.
 alias webstorm="open -a /Applications/WebStorm.app ."
 alias xcode="open -a /Applications/Xcode.app ."
 
+# file directory movements
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+alias .....='cd ../../../..'
+
 # GitHub CLI
 
 alias pr:merge="gh pr merge -m -d && gl"
