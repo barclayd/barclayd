@@ -119,10 +119,20 @@ alias webstorm="open -a /Applications/WebStorm.app ."
 alias xcode="open -a /Applications/Xcode.app ."
 
 # file directory movements
-alias ..='cd ..'
-alias ...='cd ../..'
-alias ....='cd ../../..'
-alias .....='cd ../../../..'
+function ..() {
+    if [ $# -lt 1 ]; then
+        cd ..
+    else
+        local re='^[0-9]+$'
+        if [[ "$1" =~ $re ]] ; then
+            for i in $(seq $1); do
+                cd ..
+            done
+        else
+            cd ..
+        fi
+    fi
+}
 
 # GitHub CLI
 

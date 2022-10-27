@@ -17,6 +17,7 @@ ln -s ~/<PATH_TO_THIS_REPO>/.zshrc ~/.zshrc
 ```shell
 ln -s ~/<PATH_TO_THIS_REPO>/.gitignore ~/.gitignore_global
 git config --global core.excludesfile ~/.gitignore_global
+git config --global user.email daniel.barclay@lloydsbanking.com
 ```
 
 This will create a symlinked version of the tracked `.zshrc` and `.gitignore` available in your root directory
@@ -54,6 +55,12 @@ Setup global shortcuts
 - Drag `Launch Vanilla.app` into `Applications`
 - To start automatically on login: System Preferences => Users & Groups => Login Items => select `Launch Vanilla` from `Applications`, once added click 'Hide'
 
+### Hiddenbar
+
+```shell
+brew install --cask hiddenbar
+```
+
 ### Chrome Dev Tools
 
 - Ensure [Material Theme Collection](https://chrome.google.com/webstore/detail/material-devtools-theme-c/jmefikbdhgocdjeejjnnepgnfkkbpgjo) is installed
@@ -87,9 +94,17 @@ Terminal -> Preferences -> Import -> ~/<PATH_TO_THIS_REPO>/macos/Terminal Theme/
 
 Setups to install Homebrew, preconfigured with basic packages:
 
+Ensure a git email address has been setup globally before starting these steps
+
 ```shell
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 brew bundle --file ~/<PATH_TO_THIS_REPO>/macos/Brewfile
+```
+
+```shell
+echo '# Set PATH, MANPATH, etc., for Homebrew.' >> /Users/5595657/.zprofile
+echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> /Users/5595657/.zprofile
+eval "$(/opt/homebrew/bin/brew shellenv)"
 ```
 
 #### Launch terminal hotkey
@@ -115,6 +130,7 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/too
 
 ```shell
 git clone https://github.com/denysdovhan/spaceship-prompt.git "$ZSH_CUSTOM/themes/spaceship-prompt" --depth=1
+ln -s "$ZSH_CUSTOM/themes/spaceship-prompt/spaceship.zsh-theme" "$ZSH_CUSTOM/themes/spaceship.zsh-theme"
 ```
 
 ### [Powerline fonts](https://github.com/powerline/fonts) (required for Spaceship) ⚡️
@@ -123,7 +139,7 @@ git clone https://github.com/denysdovhan/spaceship-prompt.git "$ZSH_CUSTOM/theme
 git clone https://github.com/powerline/fonts.git --depth=1
 cd fonts
 ./install.sh
-cd ..
+..
 rm -rf fonts
 ```
 
@@ -148,9 +164,9 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:
 
 #### [History Substring Search](https://github.com/zsh-users/zsh-history-substring-search) 🕰
 
-```shell
-git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
-```
+Installed via Brewfile
+
+If not working after installation - check contents of `.zshrc` and re-do symlink if necessary
 
 ### Developer
 
