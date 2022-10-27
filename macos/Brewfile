@@ -2,15 +2,11 @@ tap "homebrew/bundle"
 tap "homebrew/core"
 tap "hashicorp/tap"
 # Play, record, convert, and stream audio and video
-brew "ffmpeg"
 # GitHub command-line tool
 brew "gh"
 # Send macOS User Notifications from the command-line
 brew "terminal-notifier"
 # Download YouTube videos from the command-line
-brew "youtube-dl"
 brew "python"
-brew "google-cloud-sdk"
-brew "kid3"
-brew "awscli"
 brew "hashicorp/tap/terraform"
+brew "zsh-history-substring-search"
