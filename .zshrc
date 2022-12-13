@@ -201,9 +201,9 @@ version=""
 package=""
 isDevDependency=false
 
-while getopts ":d" opt; do
+while getopts ":D" opt; do
           case $opt in
-            d)
+            D)
               isDevDependency=true
               ;;
           esac
@@ -393,7 +393,6 @@ else
 fi
 }
 
-# export PATH=$HOME/Documents/Moonpig/local-dev/bash:$PATH
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
