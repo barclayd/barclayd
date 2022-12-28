@@ -121,6 +121,10 @@ ___
         <img height="40px" src="https://cdn.svgporn.com/logos/javascript.svg">
       </td>
       <td width="2%" align="center">
+        <span>Rust</span><br><br>
+        <img height="40px" src="https://cdn.svgporn.com/logos/rust.svg">
+      </td>
+      <td width="2%" align="center">
         <span>Python</span><br><br>
         <img height="40px" src="https://cdn.svgporn.com/logos/python.svg">
       </td>
