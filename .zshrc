@@ -118,6 +118,8 @@ alias pg_stop="launchctl unload ~/Library/LaunchAgents/homebrew.mxcl.postgresql.
 alias webstorm="/usr/local/bin/webstorm ."
 alias xcode="open -a /Applications/Xcode.app ."
 
+alias t="NO_PROXY=ghe.service.group GITHUB_TOKEN=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 terraform"
+
 # file directory movements
 function ..() {
     if [ $# -lt 1 ]; then
