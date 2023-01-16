@@ -191,6 +191,12 @@ nvm -v
 nvm install 16 --default
 ```
 
+### Rust
+
+```shell
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+```
+
 - Download XCode from [Mac App Store](https://apps.apple.com/gb/app/xcode/id497799835?mt=12)
 - Download [Postman](https://www.postman.com/downloads/)
 
