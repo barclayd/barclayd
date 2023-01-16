@@ -115,8 +115,10 @@ alias pg_stop="launchctl unload ~/Library/LaunchAgents/homebrew.mxcl.postgresql.
 
 # Open Webstorm - workaround for new projects not launching in webstorm when using web storm terminal command
 # Opens current directory in webstorm
-alias webstorm="open -a /Applications/WebStorm.app ."
+alias webstorm="/usr/local/bin/webstorm ."
 alias xcode="open -a /Applications/Xcode.app ."
+
+alias t="NO_PROXY=ghe.service.group GITHUB_TOKEN=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 terraform"
 
 # file directory movements
 function ..() {
@@ -201,9 +203,9 @@ version=""
 package=""
 isDevDependency=false
 
-while getopts ":d" opt; do
+while getopts ":D" opt; do
           case $opt in
-            d)
+            D)
               isDevDependency=true
               ;;
           esac
@@ -350,7 +352,49 @@ gpe() {
 gitPushEverything
 }
 
-# export PATH=$HOME/Documents/Moonpig/local-dev/bash:$PATH
+link() {
+folderToCreateLocalPackage=""
+folderToInstallLocalPackage=$(basename "$PWD")
+isDevDependency=false
+while getopts ":D" opt; do
+          case $opt in
+            D)
+              isDevDependency=true
+              ;;
+          esac
+        done
+if [ "$isDevDependency" = true ] ;
+then
+    folderToCreateLocalPackage="$2"
+else
+    folderToCreateLocalPackage="$1"
+fi
+if [ "$folderToCreateLocalPackage" = "" ] ;
+then
+    echo "Missing folder name to create local package"
+    return 1
+fi
+rm -rf *.tgz 2>/dev/null
+cd ../"$folderToCreateLocalPackage"
+package=$(node -p "require('./package.json').name")
+if [ "$package" = "" ] ;
+then
+    echo "Hmm... this doesn't look like a npm project. Check if you have a package.json in the root and try again"
+    return 1
+fi
+npm pack
+pathToParentRepo="../"
+pathToInstallLocalPackage=$pathToParentRepo$folderToInstallLocalPackage
+mv *.tgz ${pathToInstallLocalPackage}
+cd "$pathToInstallLocalPackage"
+if [ "$isDevDependency" = true ] ;
+then
+    npm uninstall "$package" && npm i -D *.tgz
+else
+    npm uninstall "$package" && npm i -S *.tgz
+fi
+}
+
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
@@ -358,3 +402,4 @@ export NVM_DIR="$HOME/.nvm"
 
 export NODE_EXTRA_CA_CERTS="/Users/5595657/combined_certs.pem"
 export REQUESTS_CA_BUNDLE="/Users/5595657/combined_certs.pem"
+export PATH="$HOME/.cargo/bin:$PATH"
