@@ -65,16 +65,23 @@ Setup global shortcuts
 
 - To start automatically on login: System Preferences => Users & Groups => Login Items => select `Divvy` from `Applications`, once added click 'Hide'
 
+## Chrome Extensions
+
+## Refined Github
+
+* [1password](https://chrome.google.com/webstore/detail/1password-%E2%80%93-password-mana/aeblfdkhhhdcdjpifhhbdiojplfjncoa)
+* [Refined Github](https://chrome.google.com/webstore/detail/refined-github/hlepfoohegkhhmjieoechaddaejaokhf)
+* [React Developer Tools](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi)
+* [Atom Material Icons](https://chrome.google.com/webstore/detail/atom-material-icons/pljfkbaipkidhmaljaaakibigbcmmpnc)
+
 ### Chrome Dev Tools
 
 - Ensure [Material Theme Collection](https://chrome.google.com/webstore/detail/material-devtools-theme-c/jmefikbdhgocdjeejjnnepgnfkkbpgjo) is installed
 - Open Developer Tools
 - Open the Settings:
-  - > Experiments > "Allow extensions to load custom stylesheets"
   - > Preferences -> Theme -> Dark
   - > Experiments > "Allow extensions to load custom stylesheets"
-  - > Preferences -> Theme -> Dark
-
+  - > Devices > `Nexus 5`, `Nexus 5X`, `Pixel 4`, `iPhone 6/7/8 Plus`
 - Close and reopen the DevTools
 
 ### Finder
