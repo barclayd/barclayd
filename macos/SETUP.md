@@ -4,12 +4,13 @@
 git clone https://github.com/barclayd/barclayd
 ```
 
-### Setup tracking for `.zshrc` via Symlink
+### Setup tracking for `.zshrc` and `Brewfile` via Symlink
 
 Run the following command from the root directory to automatically track changes to `.zshrc`
 
 ```shell
 ln -s ~/<PATH_TO_THIS_REPO>/.zshrc ~/.zshrc
+ln -s ~/<PATH_TO_THIS_REPO>/macos/Brewfile ~/Brewfile
 ```
 
 ### Setup tracking for `.gitignore` via Symlink to global `.gitignore`
@@ -32,9 +33,15 @@ This will create a symlinked version of the tracked `.zshrc` and `.gitignore` av
 
 ### Mac Apps
 
-- [CopyClip](https://apps.apple.com/us/app/copyclip-clipboard-history/id595191960?mt=12)
+### CopyClip
 
-#### [Divvy](https://apps.apple.com/gb/app/divvy-window-manager/id413857545?mt=12)
+- [CopyClip (direct)](https://fiplab.com/app-download/CopyClip_2.zip)
+
+- [CopyClip (Mac app store)](https://apps.apple.com/us/app/copyclip-clipboard-history/id595191960?mt=12)
+
+Configure to show menu using <kbd>Cmd</kbd> + <kbd>option</kbd> + <kbd>space</kbd>
+
+#### [Divvy (deprecated)](https://apps.apple.com/gb/app/divvy-window-manager/id413857545?mt=12)
 
 Setup global shortcuts
 
@@ -48,18 +55,15 @@ Setup global shortcuts
 
 - To start automatically on login: System Preferences => Users & Groups => Login Items => select `Divvy` from `Applications`, once added click 'Hide'
 
-#### [Vanilla](https://matthewpalmer.net/vanilla)
+#### [Magnet](https://apps.apple.com/gb/app/magnet/id441258766?mt=12)
 
-- open `Launch Vanilla.app`
-- You may need to adjust 'Allow apps downloaded from' setting in Security & Privacy in order to open
-- Drag `Launch Vanilla.app` into `Applications`
-- To start automatically on login: System Preferences => Users & Groups => Login Items => select `Launch Vanilla` from `Applications`, once added click 'Hide'
+Setup global shortcuts
 
-### Hiddenbar
+<p align="center">
+<img width="100%" alt="image" src="https://user-images.githubusercontent.com/39765499/212909228-df0a6a04-5b4f-4bbf-848d-30fbe0c9858c.png">
+</p>
 
-```shell
-brew install --cask hiddenbar
-```
+- To start automatically on login: System Preferences => Users & Groups => Login Items => select `Divvy` from `Applications`, once added click 'Hide'
 
 ### Chrome Dev Tools
 
@@ -98,12 +102,12 @@ Ensure a git email address has been setup globally before starting these steps
 
 ```shell
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-brew bundle --file ~/<PATH_TO_THIS_REPO>/macos/Brewfile
+brew bundle --file ~/Brewfile
 ```
 
 ```shell
-echo '# Set PATH, MANPATH, etc., for Homebrew.' >> /Users/5595657/.zprofile
-echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> /Users/5595657/.zprofile
+echo '# Set PATH, MANPATH, etc., for Homebrew.' >> /Users/<Username>/.zprofile
+echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> /Users/<Userame>/.zprofile
 eval "$(/opt/homebrew/bin/brew shellenv)"
 ```
 
@@ -146,7 +150,6 @@ rm -rf fonts
 #### [Zsh Notifier](https://github.com/marzocchi/zsh-notify) 🚨
 
 ```shell
-brew install terminal-notifier
 git clone https://github.com/marzocchi/zsh-notify.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/notify
 ```
 
@@ -197,6 +200,8 @@ nvm install 16 --default
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 ```
 
+* `enter 1 when prompted`
+
 - Download XCode from [Mac App Store](https://apps.apple.com/gb/app/xcode/id497799835?mt=12)
 - Download [Postman](https://www.postman.com/downloads/)
 
@@ -239,14 +244,6 @@ Copy custom Material Dark theme and paste into Slack:
 ```
 #1A1A1A,#212121,#FF9800,#FFFFFF,#FF9800,#FFFFFF,#2EB67D,#FF9800,#1A1A1A,#727272
 ```
-
-#### Homebrew packages
-
-Will be auto installed following the running of Homebrew setup
-
-#### Homebrew packages
-
-Will be auto installed following the running of Homebrew setup
 
 ### Docker
 

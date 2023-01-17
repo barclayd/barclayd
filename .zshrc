@@ -107,12 +107,6 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-
-# postgres
-
-alias pg_start="launchctl load ~/Library/LaunchAgents/homebrew.mxcl.postgresql.plist"
-alias pg_stop="launchctl unload ~/Library/LaunchAgents/homebrew.mxcl.postgresql.plist"
-
 # Open Webstorm - workaround for new projects not launching in webstorm when using web storm terminal command
 # Opens current directory in webstorm
 alias webstorm="/usr/local/bin/webstorm ."
@@ -400,6 +394,6 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 
-export NODE_EXTRA_CA_CERTS="/Users/5595657/combined_certs.pem"
-export REQUESTS_CA_BUNDLE="/Users/5595657/combined_certs.pem"
+export NODE_EXTRA_CA_CERTS="/Users/Daniel.Barclay/combined_certs.pem"
+export REQUESTS_CA_BUNDLE="/Users/Daniel.Barclay/combined_certs.pem"
 export PATH="$HOME/.cargo/bin:$PATH"
