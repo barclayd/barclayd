@@ -1,0 +1,3 @@
+# Google Cloud
+SPACESHIP_GCLOUD_SHOW=false
+SPACESHIP_GCLOUD_ASYNC=false

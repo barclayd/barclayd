@@ -10,6 +10,7 @@ Run the following command from the root directory to automatically track changes
 
 ```shell
 ln -s ~/<PATH_TO_THIS_REPO>/.zshrc ~/.zshrc
+ln -s ~/<PATH_TO_THIS_REPO>/.spaceshiprc.zsh ~/.spaceshiprc.zsh
 ln -s ~/<PATH_TO_THIS_REPO>/macos/Brewfile ~/Brewfile
 ```
 
@@ -153,6 +154,13 @@ cd fonts
 ..
 rm -rf fonts
 ```
+
+Then in the Terminal, configure the font to be the following:
+
+<p align="center">
+<img width="75%" alt="Screenshot 2023-01-20 at 12 14 04" src="https://user-images.githubusercontent.com/39765499/213692634-824ed028-3179-4975-b28a-610fb2d9706e.png">
+</p>
+
 
 #### [Zsh Notifier](https://github.com/marzocchi/zsh-notify) 🚨
 
