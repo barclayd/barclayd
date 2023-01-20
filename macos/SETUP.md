@@ -10,6 +10,7 @@ Run the following command from the root directory to automatically track changes
 
 ```shell
 ln -s ~/<PATH_TO_THIS_REPO>/.zshrc ~/.zshrc
+ln -s ~/<PATH_TO_THIS_REPO>/.spaceshiprc.zsh ~/.spaceshiprc.zsh
 ln -s ~/<PATH_TO_THIS_REPO>/macos/Brewfile ~/Brewfile
 ```
 
@@ -19,6 +20,7 @@ ln -s ~/<PATH_TO_THIS_REPO>/macos/Brewfile ~/Brewfile
 ln -s ~/<PATH_TO_THIS_REPO>/.gitignore ~/.gitignore_global
 git config --global core.excludesfile ~/.gitignore_global
 git config --global user.email daniel.barclay@lloydsbanking.com
+git config --global --add --bool push.autoSetupRemote true
 ```
 
 This will create a symlinked version of the tracked `.zshrc` and `.gitignore` available in your root directory
@@ -154,6 +156,13 @@ cd fonts
 rm -rf fonts
 ```
 
+Then in the Terminal, configure the font to be the following:
+
+<p align="center">
+<img width="75%" alt="Screenshot 2023-01-20 at 12 14 04" src="https://user-images.githubusercontent.com/39765499/213692634-824ed028-3179-4975-b28a-610fb2d9706e.png">
+</p>
+
+
 #### [Zsh Notifier](https://github.com/marzocchi/zsh-notify) 🚨
 
 ```shell
@@ -243,6 +252,41 @@ ssh-keyscan github.com >> ~/.ssh/known_hosts
 ```
 
 Note that the host name can be swapped out in both commands depending on the base domain of the repo you are cloning
+
+#### Setting up dual ssh keys
+
+Reference individual `git.conf` files to house access to multiple [github.com](github.com) accounts from the same computer.
+
+Add the following to `~/.gitconfig`:
+
+```
+[include]
+	path = ~/work.conf
+[includeIf "gitdir:~/Documents/Coding/"]
+	path = ~/personal.conf
+```
+
+Add the following `work.conf` file to `~`:
+
+```
+[user]
+	email = <work email>
+	name = Daniel Barclay
+```
+
+Add the following `personal.conf` file to `~`:
+
+```
+[user]
+	email = barclaysd@me.com
+	name = Daniel Barclay
+
+[github]
+	user = "barclayd"
+
+[core]
+	sshCommand = "ssh -i ~/.ssh/personal_github"
+```
 
 #### Slack
 

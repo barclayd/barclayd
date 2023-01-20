@@ -69,16 +69,16 @@
 				<key>Class Name</key>
 				<string>AMLaunchApplicationAction</string>
 				<key>InputUUID</key>
-				<string>71CF261B-C020-4E8C-BA6D-BC7178225345</string>
+				<string>810C68EC-7CC2-462E-B00B-C8D1D0DDEC66</string>
 				<key>Keywords</key>
 				<array>
 					<string>File</string>
 					<string>Open</string>
 				</array>
 				<key>OutputUUID</key>
-				<string>6FFE2572-681D-4620-B4BC-DA7C44DFD537</string>
+				<string>436D2B69-0A8F-4042-9A2B-2B5AC9530684</string>
 				<key>UUID</key>
-				<string>5D0D100D-97A8-47A2-9FB7-DA7AC6EE9C64</string>
+				<string>2FD3AB64-89E9-41E1-AFBF-21C2116718D0</string>
 				<key>UnlocalizedApplications</key>
 				<array>
 					<string>Finder</string>
@@ -104,7 +104,7 @@
 				<key>isViewVisible</key>
 				<integer>1</integer>
 				<key>location</key>
-				<string>309.000000:102.000000</string>
+				<string>309.000000:223.000000</string>
 				<key>nibPath</key>
 				<string>/System/Library/Automator/Launch Application.action/Contents/Resources/Base.lproj/main.nib</string>
 			</dict>
@@ -116,8 +116,30 @@
 	<dict/>
 	<key>workflowMetaData</key>
 	<dict>
+		<key>applicationBundleIDsByPath</key>
+		<dict/>
+		<key>applicationPaths</key>
+		<array/>
+		<key>inputTypeIdentifier</key>
+		<string>com.apple.Automator.nothing</string>
+		<key>outputTypeIdentifier</key>
+		<string>com.apple.Automator.nothing</string>
+		<key>presentationMode</key>
+		<integer>11</integer>
+		<key>processesInput</key>
+		<false/>
+		<key>serviceInputTypeIdentifier</key>
+		<string>com.apple.Automator.nothing</string>
+		<key>serviceOutputTypeIdentifier</key>
+		<string>com.apple.Automator.nothing</string>
+		<key>serviceProcessesInput</key>
+		<false/>
+		<key>systemImageName</key>
+		<string>NSActionTemplate</string>
+		<key>useAutomaticInputType</key>
+		<false/>
 		<key>workflowTypeIdentifier</key>
-		<string>com.apple.Automator.workflow</string>
+		<string>com.apple.Automator.servicesMenu</string>
 	</dict>
 </dict>
 </plist>
