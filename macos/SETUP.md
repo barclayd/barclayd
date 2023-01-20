@@ -253,6 +253,10 @@ ssh-keyscan github.com >> ~/.ssh/known_hosts
 
 Note that the host name can be swapped out in both commands depending on the base domain of the repo you are cloning
 
+#### Setting up dual ssh keys
+
+Reference individual `git.conf` files to house access to multiple [github.com](github.com) accounts from the same computer.
+
 #### Slack
 
 Copy custom Material Dark theme and paste into Slack:
