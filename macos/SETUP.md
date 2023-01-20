@@ -257,6 +257,37 @@ Note that the host name can be swapped out in both commands depending on the bas
 
 Reference individual `git.conf` files to house access to multiple [github.com](github.com) accounts from the same computer.
 
+Add the following to `~/.gitconfig`:
+
+```
+[include]
+	path = ~/work.conf
+[includeIf "gitdir:~/Documents/Coding/"]
+	path = ~/personal.conf
+```
+
+Add the following `work.conf` file to `~`:
+
+```
+[user]
+	email = <work email>
+	name = Daniel Barclay
+```
+
+Add the following `personal.conf` file to `~`:
+
+```
+[user]
+	email = barclaysd@me.com
+	name = Daniel Barclay
+
+[github]
+	user = "barclayd"
+
+[core]
+	sshCommand = "ssh -i ~/.ssh/personal_github"
+```
+
 #### Slack
 
 Copy custom Material Dark theme and paste into Slack:
