@@ -112,7 +112,8 @@ source $ZSH/oh-my-zsh.sh
 alias webstorm="/usr/local/bin/webstorm ."
 alias xcode="open -a /Applications/Xcode.app ."
 
-alias t="NO_PROXY=ghe.service.group GITHUB_TOKEN=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 terraform"
+# gcp
+alias vpn="gcloud compute start-iap-tunnel mgmt-pe-bld-01-cin-euwe1b-openvpn-iap 1194 --local-host-port=localhost:1194 --zone=europe-west1-b --project mgmt-vpn-bld-1733"
 
 # file directory movements
 function ..() {
@@ -397,3 +398,4 @@ export NVM_DIR="$HOME/.nvm"
 export NODE_EXTRA_CA_CERTS="/Users/Daniel.Barclay/combined_certs.pem"
 export REQUESTS_CA_BUNDLE="/Users/Daniel.Barclay/combined_certs.pem"
 export PATH="$HOME/.cargo/bin:$PATH"
+export SPACESHIP_CONFIG="$HOME/.spaceshiprc.zsh"
