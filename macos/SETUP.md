@@ -20,6 +20,7 @@ ln -s ~/<PATH_TO_THIS_REPO>/macos/Brewfile ~/Brewfile
 ln -s ~/<PATH_TO_THIS_REPO>/.gitignore ~/.gitignore_global
 git config --global core.excludesfile ~/.gitignore_global
 git config --global user.email daniel.barclay@lloydsbanking.com
+git config --global --add --bool push.autoSetupRemote true
 ```
 
 This will create a symlinked version of the tracked `.zshrc` and `.gitignore` available in your root directory
