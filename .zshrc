@@ -111,9 +111,8 @@ source $ZSH/oh-my-zsh.sh
 # Opens current directory in webstorm
 alias webstorm="/usr/local/bin/webstorm ."
 alias xcode="open -a /Applications/Xcode.app ."
+alias openVPN="open -a /Applications/'OpenVPN Connect'.app"
 
-# gcp
-alias vpn="gcloud compute start-iap-tunnel mgmt-pe-bld-01-cin-euwe1b-openvpn-iap 1194 --local-host-port=localhost:1194 --zone=europe-west1-b --project mgmt-vpn-bld-1733"
 
 # file directory movements
 function ..() {
