@@ -288,6 +288,14 @@ Add the following `personal.conf` file to `~`:
 	sshCommand = "ssh -i ~/.ssh/personal_github"
 ```
 
+### .npmrc 
+
+Improve `npm i` times by running the following:
+
+```shell
+echo "audit=false" >> ~/.npmrc
+```
+
 #### Slack
 
 Copy custom Material Dark theme and paste into Slack:
