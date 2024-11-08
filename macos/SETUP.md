@@ -19,8 +19,10 @@ ln -s ~/<PATH_TO_THIS_REPO>/macos/Brewfile ~/Brewfile
 ```shell
 ln -s ~/<PATH_TO_THIS_REPO>/.gitignore ~/.gitignore_global
 git config --global core.excludesfile ~/.gitignore_global
-git config --global user.email daniel.barclay@lloydsbanking.com
+git config --global user.email barclaysd@me.com
+git config --global user.name "Dan Barclay"
 git config --global --add --bool push.autoSetupRemote true
+git config --global merge.ff true
 ```
 
 This will create a symlinked version of the tracked `.zshrc` and `.gitignore` available in your root directory
@@ -189,7 +191,7 @@ If not working after installation - check contents of `.zshrc` and re-do symlink
 - Install via NVM [NVM](https://github.com/nvm-sh/nvm)
 
 ```shell
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
 ```
 
 Restart terminal after completing command and verify installation by running:
@@ -288,6 +290,7 @@ Improve `npm i` times by running the following:
 
 ```shell
 echo "audit=false" >> ~/.npmrc
+echo "fund=false" >> ~/.npmrc
 ```
 
 #### Slack
@@ -344,10 +347,12 @@ Copy custom Material Dark theme and paste into Slack:
 	* Material Theme - Free - Select Material Darker High Contrast
   	* Open in Github
 
-### Mac Apps
+
+## Mac Apps
 
 * ChatGPT
 * 1Password
 * Magent
 * HiddenBar
 * CopyClip 2
+* Whatsapp
