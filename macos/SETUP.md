@@ -114,12 +114,6 @@ Ensure a git email address has been setup globally before starting these steps
 brew bundle --file ~/Brewfile
 ```
 
-```shell
-echo '# Set PATH, MANPATH, etc., for Homebrew.' >> /Users/<Username>/.zprofile
-echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> /Users/<Userame>/.zprofile
-eval "$(/opt/homebrew/bin/brew shellenv)"
-```
-
 #### Launch terminal hotkey
 
 1. Install `Launch Terminal.workflow`
@@ -348,4 +342,12 @@ Copy custom Material Dark theme and paste into Slack:
 * Install the following extensions:
 	* Material Icon Theme
 	* Material Theme - Free - Select Material Darker High Contrast
-  	* Open in Github 
+  	* Open in Github
+
+### Mac Apps
+
+* ChatGPT
+* 1Password
+* Magent
+* HiddenBar
+* CopyClip 2
