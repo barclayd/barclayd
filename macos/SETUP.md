@@ -340,3 +340,12 @@ Copy custom Material Dark theme and paste into Slack:
 ### Other
 
 - If items saved to Desktop are not displaying run `show_desktop_icons.sh`
+
+### Cursor
+
+* Change `workbench.activityBar.orientation` to `vertical`
+* Move activity bar to the right
+* Install the following extensions:
+	* Material Icon Theme
+	* Material Theme - Free - Select Material Darker High Contrast
+  	* Open in Github 
