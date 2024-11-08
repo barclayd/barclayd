@@ -228,7 +228,7 @@ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 - [Add new key](https://github.com/settings/ssh/new)
 
 ```shell
-ssh-keygen -t ed25519 -C "your_email@example.com"
+ssh-keygen -t ed25519 -C "barclaysd@me.com"
 # can leave passphrase empty
 pbcopy < ~/.ssh/id_ed25519.pub
 ```
