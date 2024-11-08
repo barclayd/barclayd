@@ -17,3 +17,11 @@ After downloading Webstorm, to get it configured with the familiar plugins, keyb
 <img width="1065" alt="Screenshot 2023-01-10 at 11 52 47" src="https://user-images.githubusercontent.com/39765499/211545387-caac5af0-a1d2-4b20-a888-af728c5fc650.png">
 <img width="1065" alt="Screenshot 2023-01-10 at 11 52 52" src="https://user-images.githubusercontent.com/39765499/211545396-06fdf3ea-a5f2-4d12-b83f-f778dc71132d.png">
 </p>
+
+### WebStorm Configuration
+
+#### Prettier
+- Preferences => External Tools
+- Import [Prettier tool](https://github.com/barclayd/barclayd/tree/master/webstorm/Prettier.xml)
+- Setup key mapping
+- Preferences => Prettier => Enable 'on code reformat' and 'on save'

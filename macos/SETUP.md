@@ -28,6 +28,7 @@ git config --global user.email barclaysd@me.com
 git config --global user.name "Dan Barclay"
 git config --global --add --bool push.autoSetupRemote true
 git config --global merge.ff true
+git config --global pull.ff only true
 ```
 
 ## 2. Development Environment

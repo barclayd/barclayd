@@ -1,13 +1,9 @@
 tap "homebrew/bundle"
 tap "homebrew/core"
 tap "hashicorp/tap"
-# Play, record, convert, and stream audio and video
-# GitHub command-line tool
 brew "gh"
 brew "nvm"
-# Send macOS User Notifications from the command-line
 brew "terminal-notifier"
 brew "python"
 brew "hashicorp/tap/terraform"
 brew "zsh-history-substring-search"
-cask "hiddenbar"
