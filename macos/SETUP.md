@@ -133,6 +133,7 @@ Create configuration files:
 - Discord
 - Figma
 - Xcode
+- SF Symbols
 
 ### Development Apps
 - Docker Desktop
@@ -167,6 +168,11 @@ Configure Chrome DevTools:
 - Preferences -> Theme -> Dark
 - Experiments > "Allow extensions to load custom stylesheets"
 - Devices > `Nexus 5`, `Nexus 5X`, `Pixel 4`, `iPhone 6/7/8 Plus`
+
+### Chrome PWAs
+
+- Google Maps
+- X
 
 ### Slack
 Theme:
