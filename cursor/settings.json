@@ -1,0 +1,20 @@
+{
+    "window.commandCenter": 1,
+    "workbench.activityBar.orientation": "vertical",
+    "workbench.sideBar.location": "right",
+    "workbench.colorTheme": "Material Theme Darker High Contrast",
+    "workbench.iconTheme": "material-icon-theme",
+    "files.autoSave": "afterDelay",
+    "files.autoSaveDelay": 2000,
+    "rainbowTags.allowEverywhere": true,
+    "rainbowTags.colors": [
+        "#f78c6c",
+        "#C3E88D",
+        "#89ddff",
+        "#80CBC4",
+        "#82aaff",
+        "#c792ea",
+        "#ab7967"
+    ],
+    "cursor.cpp.enablePartialAccepts": true
+}

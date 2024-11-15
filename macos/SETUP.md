@@ -146,6 +146,11 @@ Create configuration files:
     * Material Icon Theme
     * Material Theme - Free - Select Material Darker High Contrast
     * Open in Github
+    * Open in Finder
+    * Rainbow Tags
+    * Intellij IDEA Keybindings
+    * Markdown Preview Enhanced
+
 
 ### WebStorm Configuration
 #### Prettier
