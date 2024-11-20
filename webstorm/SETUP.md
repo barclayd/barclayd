@@ -13,9 +13,8 @@ After downloading Webstorm, to get it configured with the familiar plugins, keyb
 ### Setting up correct UI Font
 
 <p align="center">
-<img width="100%" alt="Screenshot 2022-12-03 at 11 56 08" src="https://user-images.githubusercontent.com/39765499/205468353-1b8d81e4-5c9d-4a8c-88ee-ff77cf6277f3.png">
-<img width="1065" alt="Screenshot 2023-01-10 at 11 52 47" src="https://user-images.githubusercontent.com/39765499/211545387-caac5af0-a1d2-4b20-a888-af728c5fc650.png">
-<img width="1065" alt="Screenshot 2023-01-10 at 11 52 52" src="https://user-images.githubusercontent.com/39765499/211545396-06fdf3ea-a5f2-4d12-b83f-f778dc71132d.png">
+<img width="100%" alt="image" src="https://github.com/user-attachments/assets/4e3786b9-2817-4cfa-821e-6ade74230f2a">
+<img width="100%" alt="image" src="https://github.com/user-attachments/assets/d917edd2-d569-4544-929a-f681f8c39968">
 </p>
 
 ### WebStorm Configuration
