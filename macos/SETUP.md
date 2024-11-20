@@ -150,6 +150,8 @@ Create configuration files:
     * Rainbow Tags
     * Intellij IDEA Keybindings
     * Markdown Preview Enhanced
+    * Swift
+    * Sweetpad
 
 
 ### WebStorm Configuration
