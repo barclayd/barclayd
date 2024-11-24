@@ -112,6 +112,7 @@ source $ZSH/oh-my-zsh.sh
 alias webstorm="/usr/local/bin/webstorm ."
 alias xcode="open -a /Applications/Xcode.app ."
 alias openVPN="open -a /Applications/'OpenVPN Connect'.app"
+alias docker="/Applications/Docker.app/Contents/Resources/bin/docker"
 
 
 # file directory movements
