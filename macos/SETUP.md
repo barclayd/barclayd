@@ -136,7 +136,7 @@ Create configuration files:
 - SF Symbols
 
 ### Development Apps
-- Docker Desktop
+- [Docker Desktop](https://desktop.docker.com/mac/main/arm64/Docker.dmg?utm_source=docker&utm_medium=webreferral&utm_campaign=docs-driven-download-mac-arm64)
 - Postman
 - WebStorm
 - Cursor
