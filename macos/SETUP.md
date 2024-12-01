@@ -77,6 +77,12 @@ echo "audit=false" >> ~/.npmrc
 echo "fund=false" >> ~/.npmrc
 ```
 
+## Deno
+
+```shell
+curl -fsSL https://deno.land/install.sh | sh
+```
+
 #### Rust
 ```shell
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh

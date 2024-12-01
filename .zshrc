@@ -109,7 +109,7 @@ source $ZSH/oh-my-zsh.sh
 
 # Open Webstorm - workaround for new projects not launching in webstorm when using web storm terminal command
 # Opens current directory in webstorm
-alias webstorm="/usr/local/bin/webstorm ."
+alias webstorm="open -a /Applications/Webstorm.app ."
 alias xcode="open -a /Applications/Xcode.app ."
 alias openVPN="open -a /Applications/'OpenVPN Connect'.app"
 alias docker="/Applications/Docker.app/Contents/Resources/bin/docker"
@@ -427,8 +427,7 @@ load-nvmrc() {
 add-zsh-hook chpwd load-nvmrc
 load-nvmrc
 
-
-export NODE_EXTRA_CA_CERTS="/Users/Daniel.Barclay/combined_certs.pem"
-export REQUESTS_CA_BUNDLE="/Users/Daniel.Barclay/combined_certs.pem"
+export REQUESTS_CA_BUNDLE="$HOME/.mac-ca-roots"
 export PATH="$HOME/.cargo/bin:$PATH"
 export SPACESHIP_CONFIG="$HOME/.spaceshiprc.zsh"
+. "/Users/danbarclay/.deno/env"
