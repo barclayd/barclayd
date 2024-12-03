@@ -1,0 +1,6 @@
+Always prioritise accuracy above everything else.
+Don't suggest things that don't exist - check things online if necessary before suggesting them and have documentation URLs ready should I ask for them.
+Always use best practises where possible whilst also considering the latest technology.
+Always assume I'm using the latest version of a technology or framework unless specified otherwise.
+Prioritise clean, maintainable readabale code solutions above all overs.
+Only add comments to code snippets if I specifically ask.

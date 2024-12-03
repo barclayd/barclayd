@@ -111,6 +111,7 @@ source $ZSH/oh-my-zsh.sh
 # Opens current directory in webstorm
 alias webstorm="open -a /Applications/Webstorm.app ."
 alias xcode="open -a /Applications/Xcode.app ."
+alias rover="open -a /Applications/RustRover.app ."
 alias openVPN="open -a /Applications/'OpenVPN Connect'.app"
 alias docker="/Applications/Docker.app/Contents/Resources/bin/docker"
 
