@@ -3,9 +3,7 @@
     "workbench.activityBar.orientation": "vertical",
     "workbench.sideBar.location": "right",
     "workbench.colorTheme": "Material Theme Darker High Contrast",
-    "workbench.iconTheme": "material-icon-theme",
     "files.autoSave": "afterDelay",
-    "files.autoSaveDelay": 2000,
     "rainbowTags.allowEverywhere": true,
     "rainbowTags.colors": [
         "#f78c6c",
@@ -16,5 +14,24 @@
         "#c792ea",
         "#ab7967"
     ],
-    "cursor.cpp.enablePartialAccepts": true
+    "runOnSave.commands": [
+        {
+            "match": "\\.swift$",
+            "command": "swiftformat .",
+            "runIn": "backend"
+        }
+    ],
+    "cursor.cpp.enablePartialAccepts": true,
+    "workbench.iconTheme": "material-icon-theme",
+    "lldb.library": "/Applications/Xcode.app/Contents/SharedFrameworks/LLDB.framework/Versions/A/LLDB",
+    "lldb.launch.expressions": "native",
+    "[swift]": {
+        "editor.defaultFormatter": "sswg.swift-lang"
+    },
+    "git.autofetch": true,
+    "git.enableSmartCommit": true,
+    "explorer.confirmDelete": false,
+    "explorer.confirmDragAndDrop": false,
+    "cursor.chat.showSuggestedFiles": true,
+    "cursor.chat.smoothStreaming": true
 }
