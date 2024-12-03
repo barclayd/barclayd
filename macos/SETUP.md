@@ -190,7 +190,7 @@ Configure Chrome DevTools:
 ### Slack
 Theme:
 ```
-#1A1A1A,#212121,#FF9800,#FFFFFF,#FF9800,#FFFFFF,#2EB67D,#FF9800,#1A1A1A,#727272
+#21252B,#31363F,#20B684,#528BFF
 ```
 
 ## 4. System Customization
