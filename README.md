@@ -1,16 +1,16 @@
 ### Welcome to my Github 👨🏻‍💻
 
-I'm a fullstack software engineer who's passionate about creating and maintaining high quality software solutions for both the web and Apple's ecoystem to solve real world issues.
+I'm a fullstack software engineer who's passionate about creating, scaling and maintaining high quality software solutions for both the web and Apple's ecoystem to solve real world issues.
 
 ## My Active Projects
 
-### myFridge: smart food inventory tracker
+### KeepFresh: smart food inventory tracker
 
 <p align="center">
-  <img width=600 src="https://user-images.githubusercontent.com/39765499/92406040-ede1a880-f12e-11ea-8e1d-2ea19c0aaf79.png" />
+  <img width=600 src="https://github.com/user-attachments/assets/64c20deb-c22a-47c4-9762-2f2416270d7b" />
 </p>
 
-A smart food waste tracker to help you use all the food you buy and reduce food waste. Available on the [App Store](https://apps.apple.com/gb/app/myfridge/id1526361370) and coming to the web soon!
+A smart food waste tracker that's ending food waste for good. Available on the [App Store](https://apps.apple.com/gb/app/myfridge/id1526361370) and coming to the web soon!
 
 ___  
 
