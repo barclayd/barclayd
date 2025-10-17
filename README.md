@@ -7,7 +7,7 @@ I'm a fullstack software engineer who's passionate about creating, scaling and m
 ### KeepFresh: smart food inventory tracker
 
 <p align="center">
-  <img width=600 src="https://github.com/user-attachments/assets/64c20deb-c22a-47c4-9762-2f2416270d7b" />
+  <img width="85%" src="https://github.com/user-attachments/assets/64c20deb-c22a-47c4-9762-2f2416270d7b" />
 </p>
 
 A smart food waste tracker that's ending food waste for good. Available on the [App Store](https://apps.apple.com/gb/app/myfridge/id1526361370) and coming to the web soon!
