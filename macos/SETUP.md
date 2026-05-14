@@ -16,6 +16,9 @@ git clone https://github.com/barclayd/barclayd
 
 ### Configuration Files
 ```shell
+
+Need to script this up and only run after installing ohmyzsh
+
 # Setup .zshrc and Brewfile tracking
 ln -s ~/<PATH_TO_THIS_REPO>/.zshrc ~/.zshrc
 ln -s ~/<PATH_TO_THIS_REPO>/.spaceshiprc.zsh ~/.spaceshiprc.zsh
@@ -35,11 +38,21 @@ git config --global pull.ff only true
 
 ### Terminal Setup
 #### Theme
+
+Complete this step after installing fonts
+
 Terminal -> Preferences -> Import -> ~/<PATH_TO_THIS_REPO>/macos/Terminal Theme/MaterialDarker.terminal
+
+Fonts -> Roboto Mono for Powerline 12
 
 #### Homebrew
 ```shell
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+echo >> /Users/danbarclay/.zprofile
+echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> /Users/danbarclay/.zprofile
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
 brew bundle --file ~/Brewfile
 ```
 
@@ -70,17 +83,11 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:
 #### Node.js
 ```shell
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
-nvm install 16 --default
+nvm install 23 --default
 
 # NPM Configuration
 echo "audit=false" >> ~/.npmrc
 echo "fund=false" >> ~/.npmrc
-```
-
-## Deno
-
-```shell
-curl -fsSL https://deno.land/install.sh | sh
 ```
 
 #### Rust

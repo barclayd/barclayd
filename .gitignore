@@ -56,3 +56,6 @@ _next
 
 .storybook-out
 storybook-out
+
+# claude
+.claude/
