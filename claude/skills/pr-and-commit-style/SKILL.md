@@ -1,6 +1,6 @@
 ---
 name: pr-and-commit-style
-description: Dan's personal style for git commit messages, branch names, PR titles and PR descriptions. Use whenever writing a commit message, naming a branch, opening a PR (`gh pr create`), or writing/editing a PR title or body.
+description: Dan's personal style for git commit messages, branch names, PR titles and PR descriptions. Use whenever writing a commit message, naming a branch, opening a PR (`gh pr create`), or writing/editing a PR title or body. Visual changes need screenshots or video in the PR.
 ---
 
 # PR and commit style
@@ -112,8 +112,9 @@ Visual changes get media. Dan almost always includes it for UI work.
 - **Video** when a still image can't show the change: animations, transitions, multi-step flows, or behaviour on a device.
 - Put media below the bullets. When there's more than one, group it under headings: `### Mobile` / `### Desktop`, `## Before` / `## After`, or `## Control` / `## Variant` for experiments. A single image needs no heading.
 - Embed images as `<img width="..." alt="..." src="..." />` (or `![alt](url)`). A video is a bare GitHub attachment URL on its own line, which GitHub renders as a player.
-- Capture media yourself where the tools allow, e.g. a browser screenshot tool, or `xcrun simctl io booted screenshot <file>` / `xcrun simctl io booted recordVideo <file>` for the iOS simulator. Save it locally.
+- Capture media yourself where the tools allow, e.g. the project's own screenshot or Playwright scripts, a browser screenshot tool, or `xcrun simctl io booted screenshot <file>` / `xcrun simctl io booted recordVideo <file>` for the iOS simulator. Save it locally.
 - GitHub has no API for uploading PR attachments, so never invent links or commit media to the repo just to embed it. Instead, give the user the file paths and the heading each file belongs under, so they can drag them into the description.
+- If you can't capture it, still tell the user the PR is visual and what to screenshot or record, so they can add it.
 
 ### Optional extras
 
