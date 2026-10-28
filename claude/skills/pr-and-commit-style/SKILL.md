@@ -113,7 +113,8 @@ Visual changes get media. Dan almost always includes it for UI work.
 - Put media below the bullets. When there's more than one, group it under headings: `### Mobile` / `### Desktop`, `## Before` / `## After`, or `## Control` / `## Variant` for experiments. A single image needs no heading.
 - Embed images as `<img width="..." alt="..." src="..." />` (or `![alt](url)`). A video is a bare GitHub attachment URL on its own line, which GitHub renders as a player.
 - Capture media yourself where the tools allow, e.g. the project's own screenshot or Playwright scripts, a browser screenshot tool, or `xcrun simctl io booted screenshot <file>` / `xcrun simctl io booted recordVideo <file>` for the iOS simulator. Save it locally.
-- Upload it with `gh pr create --attach '<file>#<alt text>'`, or `gh pr edit <number> --attach ...` for an open PR (needs `gh` 2.100+). To place a file under a heading, reference it in the body as `![alt](./file.png)` and attach the same path: `gh` rewrites the reference to the uploaded asset. Unreferenced attachments are appended to the end of the body.
+- Upload it with `gh pr create --attach '<file>#<alt text>'`, or `gh pr edit <number> --attach ...` for an existing PR, open or merged (needs `gh` 2.100+). Keep alt text short: what the image shows.
+- To place a file under a heading, reference it in the body as `![alt](./file.png)` and attach the same path: `gh` rewrites the reference to the uploaded asset. A bare `--attach` appends to the very end of the body, so on an existing PR whose body ends with a link or section, pass the whole body with `--body-file` and the reference where the media belongs.
 - Never invent links, or commit media to the repo just to embed it.
 - If you can't capture it, still tell the user the PR is visual and what to screenshot or record, so they can add it.
 
