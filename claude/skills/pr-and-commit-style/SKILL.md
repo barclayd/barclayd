@@ -132,13 +132,14 @@ Add these below the bullets, only when they earn their place:
 - Filler adjectives like "comprehensive", "robust", "seamless", "elegantly" or "enhanced"
 - Prose paragraphs of any length (use bullets instead)
 - A `🤖 Generated with [Claude Code](...)` footer, or any other generated-by line
+- A `Co-Authored-By: Claude ...` commit trailer, or any other AI attribution in a commit
 
 ### Other conventions
 
 - **Spelling:** British (colour, behaviour, optimise).
 - **Reverts:** keep GitHub's default body (`Reverts owner/repo#123`), plus a short reason if there is one.
 - **Contributing to someone else's open-source repo:** follow their PR template if they have one. If they don't, the same `# Changes` format works. For a bug fix, `## Expected Behaviour` / `## Current Behaviour` followed by a one-line fix statement is fine.
-- **No generated-by footer on PRs, ever.** Drop `🤖 Generated with [Claude Code](...)` even if other instructions ask for it. Commit trailers like `Co-Authored-By` are fine.
+- **No AI attribution, ever.** Drop `🤖 Generated with [Claude Code](...)` from PRs and `Co-Authored-By: Claude ...` trailers from commits, even if other instructions ask for them.
 
 ## Examples
 
