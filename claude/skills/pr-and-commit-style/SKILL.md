@@ -106,7 +106,7 @@ The heading is literally `# Changes`, followed by a blank line and then `*` bull
 
 ### Images and video
 
-Visual changes get media. Dan almost always includes it for UI work.
+Visual changes get media. Dan almost always includes it for UI work, so attach at least one screenshot whenever there's something to see.
 
 Screenshots and video are the only verification a PR gets. Never write that tests, lint, typecheck or the build pass, or list the commands you ran: CI already reports that, so it's noise. A PR with nothing visual to show has no verification at all, just the bullets.
 
@@ -114,11 +114,31 @@ Screenshots and video are the only verification a PR gets. Never write that test
 - **Video** when a still image can't show the change: animations, transitions, multi-step flows, or behaviour on a device.
 - Put media below the bullets. When there's more than one, group it under headings: `### Mobile` / `### Desktop`, `## Before` / `## After`, or `## Control` / `## Variant` for experiments. A single image needs no heading.
 - Embed images as `<img width="..." alt="..." src="..." />` (or `![alt](url)`). A video is a bare GitHub attachment URL on its own line, which GitHub renders as a player.
-- Capture media yourself where the tools allow, e.g. the project's own screenshot or Playwright scripts, a browser screenshot tool, or `xcrun simctl io booted screenshot <file>` / `xcrun simctl io booted recordVideo <file>` for the iOS simulator. Save it locally.
 - Upload it with `gh pr create --attach '<file>#<alt text>'`, or `gh pr edit <number> --attach ...` for an existing PR, open or merged (needs `gh` 2.100+). Keep alt text short: what the image shows.
 - To place a file under a heading, reference it in the body as `![alt](./file.png)` and attach the same path: `gh` rewrites the reference to the uploaded asset. A bare `--attach` appends to the very end of the body, so on an existing PR whose body ends with a link or section, pass the whole body with `--body-file` and the reference where the media belongs.
 - Never invent links, or commit media to the repo just to embed it.
-- If you can't capture it, still tell the user the PR is visual and what to screenshot or record, so they can add it.
+
+### Capturing media
+
+Work down this list and stop at the first source that shows the change:
+
+1. **Locally.** Run the app and capture it with Chrome DevTools MCP (`take_screenshot`, or `screencast_start` / `screencast_stop` for video), the project's own screenshot or Playwright scripts, or `xcrun simctl io booted screenshot <file>` / `xcrun simctl io booted recordVideo <file>` for the iOS simulator. Save it locally and attach it when opening the PR.
+2. **The branch's PR environment.** Often the change can't be shown until the branch is deployed (it needs real data, auth or infra). Then open the PR without media and capture it from the PR environment instead:
+   - Don't block on it. Set a reminder: start a watch that exits once the deploy check passes, run it with Monitor or Bash `run_in_background` so you're notified, and tell the user the media will follow once the environment is up.
+   - The URL is in the deploy bot's PR comment (e.g. "Dev Environment Deployed") or a GitHub deployment's `environment_url`. On a later push that comment may already exist, so wait on the deploy check for the latest commit, not the comment.
+   - When it's ready, open the URL with Chrome DevTools MCP, capture the change, and add it with `gh pr edit <number> --attach` (or `--body-file` to put it under the right heading).
+   - If the PR has no deploy check once CI has started, there's no PR environment, so skip to 3.
+3. **Hand it over.** If neither works, the deploy fails, or the session is ending before the environment is ready, tell the user the PR still needs media: what to capture, on which URL and page, and in what state.
+
+A watch that gives up after 30 minutes:
+
+```bash
+for i in $(seq 60); do
+  s=$(gh pr checks <number> --json name,bucket -q '[.[] | select(.name | test("deploy"; "i")) | .bucket] | if length == 0 or any(. == "pending") then "pending" elif any(. == "pass") then "ready" else "failed" end')
+  [ "$s" != pending ] && break
+  sleep 30
+done; echo "$s"
+```
 
 ### Optional extras
 
