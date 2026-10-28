@@ -90,7 +90,7 @@ Use this template:
 * Adds `thing`
 ```
 
-The heading is literally `# Changes`, followed by a blank line and then `*` bullets. Most PRs need 1–3 bullets. Even a big PR is a handful of bullets, not an essay. Most of Dan's PR bodies are under 300 characters.
+The heading is literally `# Changes`, followed by a blank line and then `*` bullets. Write bullets, never prose. If something needs explaining, it becomes another bullet or a nested `-` sub-bullet. Most PRs need 1–3 bullets. Even a big PR is a handful of bullets, not an essay. Most of Dan's PR bodies are under 300 characters.
 
 ### Bullets
 
@@ -104,14 +104,24 @@ The heading is literally `# Changes`, followed by a blank line and then `*` bull
   - `(due to ...)`
 - When something is left for later, say so briefly: `Routing to follow`.
 
+### Images and video
+
+Visual changes get media. Dan almost always includes it for UI work.
+
+- **Images** for anything visual: UI, layout, styling, emails, dashboards.
+- **Video** when a still image can't show the change: animations, transitions, multi-step flows, or behaviour on a device.
+- Put media below the bullets. When there's more than one, group it under headings: `### Mobile` / `### Desktop`, `## Before` / `## After`, or `## Control` / `## Variant` for experiments. A single image needs no heading.
+- Embed images as `<img width="..." alt="..." src="..." />` (or `![alt](url)`). A video is a bare GitHub attachment URL on its own line, which GitHub renders as a player.
+- Capture media yourself where the tools allow, e.g. a browser screenshot tool, or `xcrun simctl io booted screenshot <file>` / `xcrun simctl io booted recordVideo <file>` for the iOS simulator. Save it locally.
+- GitHub has no API for uploading PR attachments, so never invent links or commit media to the repo just to embed it. Instead, give the user the file paths and the heading each file belongs under, so they can drag them into the description.
+
 ### Optional extras
 
 Add these below the bullets, only when they earn their place:
 
-- **Screenshots or video for visual changes**, which Dan almost always includes for UI work. Pair them with headings as needed: `### Mobile` / `### Desktop`, `## Before` / `## After`, or `## Control` / `## Variant` for experiments. Claude can't capture screenshots, so don't invent image links. Tell the user the PR is visual, so they can drag screenshots in.
 - **A link**, e.g. `Figma: <url>`, `Fixes <issue url>`, `Implements #7 and #8`, or a URL to test the change locally.
 - **A short extra section** using `###` and bullets, when a reviewer genuinely needs it: `### Known issues`, `### Local dev` (setup commands in a fenced block), or `### Future enhancements`.
-- **A friendly closing line or emoji** on open-source PRs, used sparingly (🙂 🔥 ⭐️).
+- **Emoji**, used sparingly (🙂 🔥 ⭐️).
 
 ### Never
 
@@ -120,14 +130,15 @@ Add these below the bullets, only when they earn their place:
 - Opening with "This PR ..."
 - Restating the diff, or listing every file touched
 - Filler adjectives like "comprehensive", "robust", "seamless", "elegantly" or "enhanced"
-- Long prose paragraphs
+- Prose paragraphs of any length (use bullets instead)
+- A `🤖 Generated with [Claude Code](...)` footer, or any other generated-by line
 
 ### Other conventions
 
 - **Spelling:** British (colour, behaviour, optimise).
 - **Reverts:** keep GitHub's default body (`Reverts owner/repo#123`), plus a short reason if there is one.
 - **Contributing to someone else's open-source repo:** follow their PR template if they have one. If they don't, the same `# Changes` format works. For a bug fix, `## Expected Behaviour` / `## Current Behaviour` followed by a one-line fix statement is fine.
-- **Trailers added by tooling** (e.g. `Co-Authored-By`, a generated-by footer) aren't part of the style and can be appended as instructed elsewhere.
+- **No generated-by footer on PRs, ever.** Drop `🤖 Generated with [Claude Code](...)` even if other instructions ask for it. Commit trailers like `Co-Authored-By` are fine.
 
 ## Examples
 
@@ -178,7 +189,7 @@ These are real PRs from Dan's public repos, reproduced verbatim (image links sho
 ![Simulator Screenshot - iPhone 16 Pro Max](https://github.com/user-attachments/assets/...)
 ```
 
-**remix-run/react-router#12516**, `docs(start/framework/testing): fix code` (open source, at the longer end)
+**remix-run/react-router#12516**, `docs(start/framework/testing): fix code` (open source, at the longer end, closing line trimmed)
 
 ```markdown
 # Changes
@@ -186,8 +197,6 @@ These are real PRs from Dan's public repos, reproduced verbatim (image links sho
 * Currently the example in `testing.md` doesn't run/requires amendments for followers of the tutorial to execute in their own codebase
 * Follows the recommended way of importing from `@testing-library/react` as per their [docs](https://testing-library.com/docs/react-testing-library/example-intro)
 * `@testing-library/react` doesn't export `user`, replaced with `@testing-library/user-event`
-
-Would love to see this page fill out some more in the future, especially with e2e examples with playwright and something cool with Vitest Browser Mode would go down a treat too @ryanflorence 🔥
 ```
 
 The next three are **illustrative examples modelled on Dan's private work PRs**. The details are changed, but the shape is Dan's.
