@@ -1,6 +1,6 @@
 ---
 name: pr-and-commit-style
-description: Dan's personal style for git commit messages, branch names, PR titles and PR descriptions. Use whenever writing a commit message, naming a branch, opening a PR (`gh pr create`), or writing/editing a PR title or body. Visual changes need screenshots or video in the PR.
+description: Dan's personal style for git commit messages, branch names, PR titles and PR descriptions. Use whenever writing a commit message, naming a branch, opening a PR (`gh pr create`), or writing/editing a PR title or body. Visual changes need screenshots or video in the PR, which is the only verification a PR gets (never "tests pass").
 ---
 
 # PR and commit style
@@ -108,6 +108,8 @@ The heading is literally `# Changes`, followed by a blank line and then `*` bull
 
 Visual changes get media. Dan almost always includes it for UI work.
 
+Screenshots and video are the only verification a PR gets. Never write that tests, lint, typecheck or the build pass, or list the commands you ran: CI already reports that, so it's noise. A PR with nothing visual to show has no verification at all, just the bullets.
+
 - **Images** for anything visual: UI, layout, styling, emails, dashboards.
 - **Video** when a still image can't show the change: animations, transitions, multi-step flows, or behaviour on a device.
 - Put media below the bullets. When there's more than one, group it under headings: `### Mobile` / `### Desktop`, `## Before` / `## After`, or `## Control` / `## Variant` for experiments. A single image needs no heading.
@@ -128,8 +130,9 @@ Add these below the bullets, only when they earn their place:
 
 ### Never
 
-- `## Summary`, `## Test plan`, `## What` / `## Why` / `## How to Test` / `## Notes`, `## Overview` / `## Problem Solved` / `## Technical Implementation` (these are exactly how the AI-written PRs gave themselves away)
+- `## Summary`, `## Test plan`, `## Verification` / `## Testing`, `## What` / `## Why` / `## How to Test` / `## Notes`, `## Overview` / `## Problem Solved` / `## Technical Implementation` (these are exactly how the AI-written PRs gave themselves away)
 - Checkbox test plans, file-by-file inventories, or bullets that start with a bold label (`**Router**: ...`)
+- "Tests pass", "lint clean", "typecheck passes", "build succeeds", "verified locally", or a list of commands run (CI shows all of that)
 - Opening with "This PR ..."
 - Restating the diff, or listing every file touched
 - Filler adjectives like "comprehensive", "robust", "seamless", "elegantly" or "enhanced"
