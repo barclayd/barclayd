@@ -1,5 +1,31 @@
 # Codex setup
 
+## Review from a phone
+
+Install the handoff skill from this checkout:
+
+```sh
+./codex/install-remote-handoff.sh
+```
+
+The installer links `remote-handoff` into `$CODEX_HOME/skills` or
+`~/.codex/skills`, is safe to rerun, and refuses to replace another installation.
+Keep this checkout available. `codex/AGENTS.md` contains the standing handoff
+instruction; apply that section to the global `~/.codex/AGENTS.md` while preserving
+any other instructions. The installer does not overwrite global instructions.
+
+Ask "prepare a handoff I can review from my phone" or invoke `$remote-handoff`.
+It selects website previews, internal TestFlight builds or Mac demonstrations
+using the project's existing delivery setup. iPhone work includes an early video
+while TestFlight is being prepared, followed by the build when it is available.
+An existing chat may need an explicit skill invocation or reload to discover a
+newly installed skill.
+
+The skill coordinates existing tools; it does not install a recorder, configure
+Apple signing, provision hosting or enable macOS permissions. Those prerequisites
+belong to the relevant project/setup task. First use should verify that the
+chosen media and preview links open on Dan's phone.
+
 ## Remote readiness
 
 From this repository, install the command and global skill:
