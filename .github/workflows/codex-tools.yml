@@ -2,10 +2,10 @@ name: codex tools
 
 on:
   pull_request:
-    paths: ['codex/**', '.github/workflows/codex-tools.yml', '.github/workflows/testflight.yml']
+    paths: ['codex/**', 'claude/install-shared-skills.py', '.github/workflows/codex-tools.yml', '.github/workflows/testflight.yml']
   push:
     branches: [master]
-    paths: ['codex/**', '.github/workflows/codex-tools.yml', '.github/workflows/testflight.yml']
+    paths: ['codex/**', 'claude/install-shared-skills.py', '.github/workflows/codex-tools.yml', '.github/workflows/testflight.yml']
 
 permissions:
   contents: read
