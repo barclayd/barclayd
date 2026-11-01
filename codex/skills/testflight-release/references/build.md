@@ -15,7 +15,7 @@ Use `nextBuildNumber`; this is a lookup, not a global reservation. Serialise
 releases for the app across agents, local machines and CI.
 
 ```sh
-xcodebuild -project ios/TripSplit.xcodeproj -scheme TripSplit \
+xcodebuild -project apple/ios/TripSplit.xcodeproj -scheme TripSplit \
   -configuration Release -destination 'generic/platform=iOS' \
   -archivePath /private/path/TripSplit.xcarchive \
   -allowProvisioningUpdates \
