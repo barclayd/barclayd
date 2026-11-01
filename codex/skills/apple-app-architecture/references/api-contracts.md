@@ -74,6 +74,39 @@ remain required and primitive bounds survive generation. Treat this as a
 regression case to verify against installed versions, not a permanent patch to
 apply blindly. Generation need not expose a public documentation endpoint.
 
+## Existing route boundaries
+
+Before adding automatic route validation, classify the existing HTTP surface:
+
+- App-owned JSON routes can adopt typed request/response schemas incrementally.
+- Vendor/delegated handlers, such as an authentication library's wildcard
+  routes, retain their owning library's parsing and protocol. Do not wrap them
+  in a generic JSON validator just to make the OpenAPI inventory look complete.
+- Raw uploads, multipart bodies, webhooks and streaming endpoints need their
+  actual media types and body-handling semantics. Preserve raw bytes where
+  signature verification or an existing decoder requires them.
+
+Document which routes the generated contract covers, which remain delegated or
+not yet described, and how affected clients consume them. Prefer an explicit
+coverage boundary to an invented schema or a claim that a partial artifact
+describes the whole service. Keep excluded routes covered by their relevant
+protocol/integration checks.
+
+For JSON routes with an existing bounded parser, make sure it executes before
+automatic JSON validation consumes the stream. Preserve middleware order,
+content-type handling, fatal UTF-8 decoding, byte limits and application error
+envelopes. Check the installed framework's body consumption/caching behaviour;
+if an adapter shares the already parsed body with validation, verify that it
+cannot trigger an unbounded second read or bypass the original checks. Keep any
+framework-dependent adapter small and covered when upgrading dependencies.
+
+Exercise malformed JSON, invalid UTF-8, unsupported media types, oversized bodies
+(including streamed bodies without a trustworthy Content-Length), valid requests
+and existing auth/error precedence. Assert the original statuses and envelopes,
+including 400/413/415 where applicable. This preserves behaviour that a schema
+alone cannot describe. Ride On's JSON API, vendor auth and raw GPX uploads
+demonstrated why these route classes need separate treatment.
+
 ## Swift and web consumers
 
 For TypeScript clients, Hono RPC can share the typed route tree with `hc<AppType>`.

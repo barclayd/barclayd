@@ -58,6 +58,11 @@ actual Hono registry. Update each consumer or artifact publication path before
 removing duplicated interfaces/root contracts. Preserve semantic fixtures under
 `api/contracts/fixtures` and protocol documentation under `api/docs`.
 
+Classify app-owned JSON, vendor/delegated handlers and non-JSON uploads before
+changing registration. Follow [existing route boundaries](api-contracts.md#existing-route-boundaries)
+to preserve parsing and validation order and document the generated contract's
+actual coverage. A staged adoption can leave vendor-owned routes delegated.
+
 Compare generated validation to runtime behaviour: required versus omitted keys,
 explicit null, defaults/coercions, unions, numeric bounds, auth and error statuses.
 Hono middleware order, body-size limits and error hooks can affect an existing
