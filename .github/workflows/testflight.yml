@@ -20,7 +20,7 @@ on:
         type: string
         required: true
       project:
-        description: Repository-relative path to a committed Xcode project
+        description: Repository-relative Xcode project path, or auto for the unique scheme-named project
         type: string
         required: true
       scheme:
@@ -94,6 +94,23 @@ jobs:
           sudo xcode-select --switch "$XCODE_PATH"
           python3 tooling/codex/scripts/install_asc.py --bin-dir "$RUNNER_TEMP/testflight-bin"
           echo "$RUNNER_TEMP/testflight-bin" >> "$GITHUB_PATH"
+      - name: Resolve project
+        run: |
+          python3 - <<'PY'
+          import os
+          from pathlib import Path
+          root = Path('app')
+          selected = os.environ['APP_PROJECT']
+          if selected == 'auto':
+              matches = list(root.rglob(os.environ['APP_SCHEME'] + '.xcodeproj'))
+              if len(matches) != 1:
+                  raise SystemExit('Expected one committed scheme-named Xcode project.')
+              selected = str(matches[0].relative_to(root))
+          if not (root / selected).resolve().is_relative_to(root.resolve()) or not (root / selected).is_dir():
+              raise SystemExit('Xcode project must exist inside the app checkout.')
+          with open(os.environ['GITHUB_ENV'], 'a') as output:
+              output.write('APP_PROJECT=' + selected + '\n')
+          PY
       - name: Check API access and internal group
         run: |
           python3 tooling/codex/scripts/testflight.py check \

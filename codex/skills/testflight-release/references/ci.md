@@ -8,7 +8,8 @@ with extensions. Keep an existing Fastlane pipeline where it already works.
 
 Create a manual `workflow_dispatch` caller in the app repository. Pin `uses` and
 `tooling-ref` to the same reviewed full commit of this repository. Supply the app,
-bundle, team and internal group IDs, repository-relative project path, scheme,
+bundle, team and internal group IDs, repository-relative project path (or `auto`
+to discover a unique scheme-named project), scheme,
 runner label, Xcode path and explicit simulator test destination. Do not use PR
 events to give untrusted fork code signing credentials.
 

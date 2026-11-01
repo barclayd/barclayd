@@ -56,8 +56,8 @@ as a repair attempt. Keep creation/rotation within the authorised setup task.
 The first integration uses app `6829340844`, bundle `it.tripspl.TripSplit`, team
 `R2GGK3VN2C`, and internal group `69183108-1726-4905-82c5-e3e6ecae0251` (Dan).
 These are nonsecret identifiers; revalidate them at release time. The local ASC
-profile is `codex-testflight`. App-specific build instructions live in
-`~/Developer/tripspl.it/ios/README.md`.
+profile is `codex-testflight`. App-specific build instructions live alongside the
+TripSplit iOS shell (`apple/ios/README.md`, or `ios/README.md` in the older layout).
 
 Sources checked 1 November 2026:
 - [Apple API keys](https://developer.apple.com/help/app-store-connect/get-started/app-store-connect-api/)
