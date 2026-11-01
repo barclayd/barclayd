@@ -12,7 +12,7 @@ Most of these need iOS 27.1. `visibilityPriority`, `ToolbarOverflowMenu` and `to
 | Which side the primary takes when folded (overlay) | `.overlayArrangementEdge(.leading)` | |
 | Where the cameras and the fold are | `GeometryReader` → `proxy.reservedRegions(kind: .occlusion / .division, options: .includeInactive)` | `view.reservedRegions(kind:options:)` |
 | Whether the rail is used here, and on which side | `@Environment(\.toolbarVerticalEdge)` (`HorizontalEdge?`, `nil` = never vertical) | `traitCollection.verticalBarEdge` |
-| Opt a screen out of the rail | `.toolbarVerticalBehavior(.disabled)` | `preferredVerticalBarBehavior` |
+| Opt a screen, or a single-button sheet, out of the rail | `.toolbarVerticalBehavior(.disabled)` | `preferredVerticalBarBehavior` |
 | Keep an item out of the rail, or prefer it there | `.axisBehavior(.horizontalOnly / .verticalPreferred)` on the `ToolbarItem` | `UIBarButtonItem.axisBehavior` |
 | Overflow order | `.visibilityPriority(.high / .low)` on a `ToolbarItem` or group, or `ToolbarItemVisibilityPriority(higherThan:)` | `visibilityPriority` |
 | Always in the "…" menu | `ToolbarOverflowMenu { Button(…) }` | `navigationItem.additionalOverflowItems` |
@@ -22,14 +22,16 @@ Most of these need iOS 27.1. `visibilityPriority`, `ToolbarOverflowMenu` and `to
 | Hero image under the rail | `.backgroundExtensionEffect()` | `UIBackgroundExtensionView` |
 | Where a sheet sits on the inner display | `.presentationPlacement(_:)` | `UISheetPresentationController.preferredPlacement` |
 | Sidebar and detail | `NavigationSplitView` | `UISplitViewController` |
+| Tab bar as a sidebar on the inner display | `TabView` with `.tabViewStyle(.sidebarAdaptable)` | `UITabBarController.mode = .tabSidebar` |
 
 ### How the system chooses horizontal or vertical bars
 
 - **Inspectors** are always horizontal.
 - **Split views with several columns showing:** the sidebar and content columns get horizontal bars, and the detail column gets the rail.
 - **Sheets:**
-  - On the outer display they're vertical by default.
+  - On the outer display they're vertical by default. A sheet with a single toolbar button can opt out, and then stops just short of the front camera.
   - On the inner display they're horizontal for centred or leading placements, and vertical for trailing ones.
+  - Partially folded, they slide aside so they don't sit in the fold.
 - **Which view's preference wins:**
   - `NavigationStack` uses the top view.
   - `TabView` uses the selected tab.
@@ -72,33 +74,38 @@ So write `Button("Settings", systemImage: "gearshape") { … }`, not `Button { }
 
 Prefer `NavigationSplitView` or `ArrangementView` where they fit. When an app needs a home column with a page beside it, these patterns held up on a real device.
 
-### Measure the container, not the device
+### Choose narrow or wide from the size class, not the device
+
+Apple's guidance is to target two size classes, compact width on the outer display and regular width on the inner display, rather than fixed widths or breakpoints.
 
 ```swift
-@State private var wide = false
-
-content
-    // Open, the inner display is wider than it is tall, with room for two panes side by side.
-    .onGeometryChange(for: Bool.self) { $0.size.width >= 700 } action: { wide = $0 }
+@Environment(\.horizontalSizeClass) private var sizeClass
+private var wide: Bool { sizeClass == .regular }
 ```
 
-- **Closed:** about 394pt wide inside the rail.
-- **Tent:** the outer display in landscape is 678pt before the rail. It sits just under 700, so a width check alone barely separates it from open.
-- **If tent gets its own layout**, detect it explicitly rather than nudging the threshold:
+- **Closed and tent** are compact, about 394pt and 606pt wide inside the rail.
+- **Open, in both orientations,** is regular. Open portrait is only about 669pt wide, so decide deliberately whether it shows two panes side by side or stacked.
+- **A width breakpoint can't tell tent from open.** The outer display in landscape is 678pt before the rail, just under the ~700pt you'd pick for "open". The size class separates them cleanly.
+- **If tent gets its own layout**, it's compact width plus landscape:
 
 ```swift
 enum Shape { case narrow, tent, wide }
 
-.onGeometryChange(for: Shape.self) { size in
-    if size.width >= 700 { .wide }
-    else if size.width > size.height { .tent }
+@State private var landscape = false
+
+var shape: Shape {
+    if sizeClass == .regular { .wide }
+    else if landscape { .tent }
     else { .narrow }
-} action: { shape = $0 }
+}
+
+content
+    .onGeometryChange(for: Bool.self) { $0.size.width > $0.size.height } action: { landscape = $0 }
 ```
 
-- **"Tent" really means "short and landscape"**, so the same layout suits any iPhone in landscape.
-- **Open portrait** (about 669pt wide) lands in `narrow` with these numbers. Decide deliberately whether it should show one pane or two stacked.
-- **Log the size and both size classes in every pose** in Device Hub before you settle on thresholds.
+- **"Tent" really means "compact and landscape"**, so the same layout suits most iPhones held sideways.
+- **Measure geometry only inside a pane**, e.g. a grid choosing its column count from its own width. That's the pane's width, which changes with the split, not a screen size.
+- **Log the size and both size classes in every pose** in Device Hub before relying on them, including each half of Split View and with Picture in Picture pinned to the top.
 
 ### Hide panes, don't remove them
 

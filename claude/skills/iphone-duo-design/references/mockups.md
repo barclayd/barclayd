@@ -12,6 +12,8 @@ Use the real sizes in points:
 | Tent / closed landscape | 678 × 466 | about 606 wide, with the rail on the right and the camera at its bottom |
 | Open landscape | 951 × 669 | with the rail on the right |
 | Open portrait | 669 × 951 | with horizontal bars at the top and bottom |
+| Tabletop (open portrait, partially folded) | 669 × 951 | the curve runs across the middle, with media above it and controls below |
+| Split View | half of open landscape each | the rail on the app's outer edge, so the left-hand app's rail is on the left |
 
 - **Draw system chrome as part of the frame, not the app.**
   - The rail holds the Dynamic Island, status bar, toolbar icons and tab bar, top to bottom.
@@ -20,15 +22,16 @@ Use the real sizes in points:
 - **Leave reserved regions empty:**
   - the outer camera, always
   - the inner camera, only while it's in use
-  - the fold, down the middle of the inner display while it's partially open
+  - the fold, down the middle of the inner display while it's partially open (across the middle in portrait)
 
   Hatch or tint them so it's obvious nothing goes there.
 - **Use SF Symbols for every rail item**, with the title noted beside it. It's a reminder that items need both.
+- **Centre content on the area beside the rail**, not on the frame. A layout centred on the full screen ends up partly hidden behind the rail.
 - **Get the margins and safe areas from [Apple Design Resources](https://developer.apple.com/design/resources/)**, not guesses.
 
 ## Boards
 
-- **Lay out one row per step in the path:** closed | open | tent, plus open portrait if it differs. Reading across a row shows what happens when someone opens or turns the phone.
+- **Lay out one row per step in the path:** closed | open | tent, plus open portrait and tabletop if they differ. Reading across a row shows what happens when someone opens or turns the phone.
 - **Add rows for mid-journey changes**, e.g. "closed, with a detail open" → "open". These are where layouts break.
 - **Label every board** with the pose and the size.
 - **Annotate the rail:**
