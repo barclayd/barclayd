@@ -1,0 +1,177 @@
+name: internal TestFlight
+
+on:
+  workflow_call:
+    inputs:
+      tooling-ref:
+        description: Same immutable barclayd commit as the calling uses reference
+        type: string
+        required: true
+      app-id:
+        type: string
+        required: true
+      bundle-id:
+        type: string
+        required: true
+      team-id:
+        type: string
+        required: true
+      group-id:
+        type: string
+        required: true
+      project:
+        description: Repository-relative Xcode project path, or auto for the unique scheme-named project
+        type: string
+        required: true
+      scheme:
+        type: string
+        required: true
+      runner:
+        type: string
+        default: macos-26
+      xcode-path:
+        type: string
+        required: true
+      test-destination:
+        type: string
+        required: true
+    secrets:
+      ASC_KEY_ID:
+        required: false
+      ASC_ISSUER_ID:
+        required: false
+      ASC_PRIVATE_KEY_B64:
+        required: false
+      DISTRIBUTION_P12_B64:
+        required: false
+      DISTRIBUTION_P12_PASSWORD:
+        required: false
+      APP_STORE_PROFILE_B64:
+        required: false
+
+permissions:
+  contents: read
+
+concurrency:
+  group: testflight-${{ inputs.app-id }}
+  cancel-in-progress: false
+
+jobs:
+  release:
+    runs-on: ${{ inputs.runner }}
+    environment: testflight
+    timeout-minutes: 75
+    defaults:
+      run:
+        shell: bash
+    env:
+      APP_ID: ${{ inputs.app-id }}
+      BUNDLE_ID: ${{ inputs.bundle-id }}
+      TEAM_ID: ${{ inputs.team-id }}
+      GROUP_ID: ${{ inputs.group-id }}
+      APP_PROJECT: ${{ inputs.project }}
+      APP_SCHEME: ${{ inputs.scheme }}
+      XCODE_PATH: ${{ inputs.xcode-path }}
+      TEST_DESTINATION: ${{ inputs.test-destination }}
+      ASC_KEY_ID: ${{ secrets.ASC_KEY_ID }}
+      ASC_ISSUER_ID: ${{ secrets.ASC_ISSUER_ID }}
+      ASC_PRIVATE_KEY_B64: ${{ secrets.ASC_PRIVATE_KEY_B64 }}
+      ASC_BYPASS_KEYCHAIN: '1'
+      ASC_TELEMETRY_DISABLED: '1'
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          path: app
+          persist-credentials: false
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          repository: barclayd/barclayd
+          ref: ${{ inputs.tooling-ref }}
+          path: tooling
+          persist-credentials: false
+      - name: Select Xcode and pinned ASC
+        run: |
+          sudo xcode-select --switch "$XCODE_PATH"
+          python3 tooling/codex/scripts/install_asc.py --bin-dir "$RUNNER_TEMP/testflight-bin"
+          echo "$RUNNER_TEMP/testflight-bin" >> "$GITHUB_PATH"
+      - name: Resolve project
+        run: |
+          python3 - <<'PY'
+          import os
+          from pathlib import Path
+          root = Path('app')
+          selected = os.environ['APP_PROJECT']
+          if selected == 'auto':
+              matches = list(root.rglob(os.environ['APP_SCHEME'] + '.xcodeproj'))
+              if len(matches) != 1:
+                  raise SystemExit('Expected one committed scheme-named Xcode project.')
+              selected = str(matches[0].relative_to(root))
+          if not (root / selected).resolve().is_relative_to(root.resolve()) or not (root / selected).is_dir():
+              raise SystemExit('Xcode project must exist inside the app checkout.')
+          with open(os.environ['GITHUB_ENV'], 'a') as output:
+              output.write('APP_PROJECT=' + selected + '\n')
+          PY
+      - name: Check API access and internal group
+        run: |
+          python3 tooling/codex/scripts/testflight.py check \
+            --app "$APP_ID" --bundle-id "$BUNDLE_ID" --group-id "$GROUP_ID"
+      - name: Test app
+        working-directory: app
+        run: |
+          xcodebuild -quiet -project "$APP_PROJECT" -scheme "$APP_SCHEME" \
+            -destination "$TEST_DESTINATION" CODE_SIGNING_ALLOWED=NO test
+      - name: Prepare temporary signing
+        env:
+          DISTRIBUTION_P12_B64: ${{ secrets.DISTRIBUTION_P12_B64 }}
+          DISTRIBUTION_P12_PASSWORD: ${{ secrets.DISTRIBUTION_P12_PASSWORD }}
+          APP_STORE_PROFILE_B64: ${{ secrets.APP_STORE_PROFILE_B64 }}
+        run: python3 tooling/codex/scripts/testflight_ci_signing.py prepare
+      - name: Archive and export internal build
+        working-directory: app
+        run: |
+          set -euo pipefail
+          mkdir -p "$RUNNER_TEMP/testflight-output"
+          asc builds next-build-number --app "$APP_ID" --platform IOS --output json > "$RUNNER_TEMP/testflight-output/number.json"
+          BUILD_NUMBER=$(python3 -c 'import json,sys; print(json.load(open(sys.argv[1]))["nextBuildNumber"])' "$RUNNER_TEMP/testflight-output/number.json")
+          xcodebuild -quiet -project "$APP_PROJECT" -scheme "$APP_SCHEME" \
+            -configuration Release -destination 'generic/platform=iOS' \
+            -archivePath "$RUNNER_TEMP/testflight-output/App.xcarchive" \
+            DEVELOPMENT_TEAM="$TEAM_ID" CODE_SIGN_STYLE=Manual \
+            CODE_SIGN_IDENTITY='Apple Distribution' PROVISIONING_PROFILE_SPECIFIER="$PROFILE_UUID" \
+            CURRENT_PROJECT_VERSION="$BUILD_NUMBER" archive
+          xcodebuild -quiet -exportArchive \
+            -archivePath "$RUNNER_TEMP/testflight-output/App.xcarchive" \
+            -exportPath "$RUNNER_TEMP/testflight-output/export" \
+            -exportOptionsPlist "$SIGNING_DIR/ExportOptions.plist"
+      - name: Upload with source receipt
+        run: |
+          set -euo pipefail
+          IPA=$(python3 -c 'import pathlib,sys; files=list(pathlib.Path(sys.argv[1]).glob("*.ipa")); assert len(files)==1, "Expected exactly one IPA"; print(files[0])' "$RUNNER_TEMP/testflight-output/export")
+          SOURCE_SHA=$(git -C app rev-parse HEAD)
+          python3 tooling/codex/scripts/testflight.py upload \
+            --app "$APP_ID" --bundle-id "$BUNDLE_ID" --group-id "$GROUP_ID" \
+            --ipa "$IPA" --source-sha "$SOURCE_SHA" \
+            --receipt "$RUNNER_TEMP/testflight-output/release.json"
+      - name: Wait for internal availability
+        run: |
+          for _ in {1..30}; do
+            code=0
+            python3 tooling/codex/scripts/testflight.py resume \
+              --receipt "$RUNNER_TEMP/testflight-output/release.json" || code=$?
+            if [ "$code" -eq 0 ]; then exit 0; fi
+            if [ "$code" -ne 7 ]; then exit "$code"; fi
+            sleep 15
+          done
+          echo 'Apple is still processing or enabling access. Resume the saved receipt; do not rerun upload.'
+          exit 7
+      - name: Save receipt
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7
+        with:
+          name: testflight-receipt-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/testflight-output/release.json
+          if-no-files-found: ignore
+          retention-days: 30
+      - name: Remove temporary signing
+        if: always()
+        run: python3 tooling/codex/scripts/testflight_ci_signing.py cleanup
