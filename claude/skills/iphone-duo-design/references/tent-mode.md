@@ -40,7 +40,7 @@
 ## Don't
 
 - **Don't draw a status bar, Dynamic Island or camera cutout** in the app. The system draws the rail, and it moves with the pose.
-- **Don't detect tent by device model or hinge angle.** Lay out from the container size. Wider than tall and under the wide threshold means "short and landscape" (see [swiftui.md](swiftui.md)). The same layout then works on any iPhone held sideways.
+- **Don't detect tent by device model or hinge angle.** Lay out from the size class and the container's shape. Compact width and wider than tall means "short and landscape" (see [swiftui.md](swiftui.md)). The same layout then works on most iPhones held sideways.
 - **Don't put the key information where the hand or the desk hides it.** In tent that means the very bottom edge, which is closest to the surface and furthest from the eye.
 
 ## Examples
