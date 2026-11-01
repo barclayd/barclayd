@@ -1,0 +1,23 @@
+name: codex tools
+
+on:
+  pull_request:
+    paths: ['codex/**', '.github/workflows/codex-tools.yml', '.github/workflows/testflight.yml']
+  push:
+    branches: [master]
+    paths: ['codex/**', '.github/workflows/codex-tools.yml', '.github/workflows/testflight.yml']
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
+        with:
+          python-version: '3.13'
+      - run: python3 -m unittest discover -s codex/tests -v
+      - run: sh -n codex/install-testflight.sh

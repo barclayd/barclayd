@@ -1,5 +1,56 @@
 # Codex setup
 
+## TestFlight from the terminal
+
+Install ASC and the global skill/command from this checkout:
+
+```sh
+brew install asc
+asc install-skills
+./codex/install-testflight.sh
+```
+
+The installer links `testflight` into `~/.local/bin` and `testflight-release` into
+`$CODEX_HOME/skills` or `~/.codex/skills`, preserving other installations. Set
+`TESTFLIGHT_BIN_DIR` to choose a different command directory. Python 3.11+ is
+required. Keep this checkout available. An existing chat can read the skill at
+`codex/skills/testflight-release/SKILL.md` immediately; discovery may need reload.
+
+The helper is tested with the ASC version pinned in `testflight-toolchain.json`.
+CI uses `scripts/install_asc.py --bin-dir DIRECTORY` to install a checksum-pinned
+binary without replacing another installation. Update the pin, upstream hashes
+and helper compatibility together when upgrading.
+
+```sh
+testflight check --app APP_ID --bundle-id BUNDLE_ID --group-id INTERNAL_GROUP_ID
+testflight upload --app APP_ID --bundle-id BUNDLE_ID --group-id INTERNAL_GROUP_ID \
+  --ipa /private/path/App.ipa --source-sha FULL_SOURCE_SHA \
+  --receipt /private/path/release.json
+testflight resume --receipt /private/path/release.json
+testflight status --receipt /private/path/release.json
+```
+
+Upload records provenance supplied by the caller and the actual IPA hash before
+contacting Apple. It does not build, sign or infer source from an IPA. A failed
+upload leaves its receipt for exact-build recovery. Reusing an existing receipt
+for upload fails, so an interrupted command cannot blindly upload twice.
+`resume` performs a bounded processing check, assigns the verified internal group
+when needed and verifies availability; `status` only reads Apple. Exit 7 means
+pending. Exit 1 means a blocker. JSON status `api_access_verified` says nothing
+about signing; `available_to_install` requires Apple's processed, unexpired build,
+internal testing state and group membership. Neither claims device installation.
+
+For a build uploaded elsewhere, `testflight track` takes the same app/group flags,
+plus `--version`, `--build-number`, `--source-sha` and a new `--receipt`. It records
+an unknown IPA hash as null and verifies the existing build without uploading.
+
+Use `$testflight-release` for setup, archive/export and handoff. Its references
+cover API keys, manual distribution signing and the reusable macOS CI workflow.
+Keys, signing identities, passwords, logs and archives belong outside Git. The
+helper keeps receipts/logs private (0600) and never prints raw auth failures.
+One local helper per app can run at a time; coordinate local releases with CI
+because the host lock is not a cross-machine build-number reservation.
+
 ## Review from a phone
 
 Install the handoff skill from this checkout:

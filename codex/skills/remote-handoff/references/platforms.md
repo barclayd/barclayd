@@ -52,6 +52,11 @@ checks relevant to the feature in the eventual handoff.
 
 ### Internal TestFlight delivery
 
+Use `testflight-release` when configuring or running CLI delivery. Its shared
+`testflight` helper checks app/group access, records each upload and resumes exact
+build processing without repeating the upload. Keep a working project Fastlane
+pipeline when one already exists.
+
 Use the project's existing trusted build/release workflow and its authorised
 Apple account. Verify the app record, signing/provisioning for the app and its
 extensions, upload access, and Dan's eligible internal tester group. Start this
