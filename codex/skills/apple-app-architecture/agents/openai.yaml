@@ -1,0 +1,4 @@
+interface:
+  display_name: "Apple App Architecture"
+  short_description: "Swift packages, API contracts and app migrations"
+  default_prompt: "Use $apple-app-architecture to design or migrate this app using shared Swift packages and API-owned Hono/Zod contracts."
