@@ -74,6 +74,25 @@ remain required and primitive bounds survive generation. Treat this as a
 regression case to verify against installed versions, not a permanent patch to
 apply blindly. Generation need not expose a public documentation endpoint.
 
+Check named schemas both at nullable use sites and as standalone non-null
+components. Ride On found that making `User.pause` nullable widened the shared
+`Pause` component too. Comparing Zod and generated-schema validation exposed the
+leak; a local union with null preserved the intended non-null component. For this
+case, check a valid object, explicit null, an omitted required property and an
+invalid primitive at the property, then verify that the shared component still
+rejects null. Apply only a demonstrated local correction; do not rewrite every
+nullable schema or assume one generator workaround fits all references.
+
+Strict object extensions need positive parity cases too: generated `allOf`
+branches can each reject fields declared by the other branch, rejecting valid
+populated data as well as null. Ride On corrected this by composing one strict
+object from the existing field schemas plus the extension fields. Verify valid
+extended objects, null only where allowed, missing required fields and unknown
+properties against both Zod and the generated schema. Reusing `.shape` avoids
+duplicating field definitions, but does not copy object-level refinements or
+transforms; preserve those explicitly when present. Do not loosen strictness
+simply to make the generated artifact accept a fixture.
+
 ## Existing route boundaries
 
 Before adding automatic route validation, classify the existing HTTP surface:
