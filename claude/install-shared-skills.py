@@ -6,7 +6,9 @@ from pathlib import Path
 import sys
 
 
-SHARED_SKILLS = ("aws-sso-login", "remote-ready", "remote-handoff", "testflight-release")
+SHARED_SKILLS = (
+    "apple-app-architecture", "aws-sso-login", "remote-ready", "remote-handoff", "testflight-release",
+)
 REQUIRED_ASC = {"asc-cli-usage", "asc-signing-setup", "asc-xcode-build", "asc-testflight-orchestration"}
 
 

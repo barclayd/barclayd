@@ -4,6 +4,27 @@ These skills can also be linked into Claude Code with
 `python3 claude/install-shared-skills.py` from this checkout. See
 [Claude setup](../claude/SETUP.md) for prerequisites and invocation syntax.
 
+## Apple app architecture
+
+Install the architecture skill from this checkout:
+
+```sh
+./codex/install-app-architecture.sh
+```
+
+Invoke `$apple-app-architecture` for a new app foundation, shared Swift package
+design or migration. It covers thin Apple app shells, vertical feature products,
+Bun/Hono/Zod APIs on Cloudflare, API-owned OpenAPI contracts and preserving
+existing storage/sessions during extraction. The guides distinguish reusable
+preferences from product-specific decisions and include both new-app and
+migration workflows.
+
+The installer links the skill into `$CODEX_HOME/skills` or `~/.codex/skills`, is
+safe to rerun and preserves conflicting installations. It needs no Apple or
+Cloudflare credentials. Keep this checkout available and reload skill discovery
+if needed; existing chats can read
+`codex/skills/apple-app-architecture/SKILL.md` directly.
+
 ## TestFlight from the terminal
 
 Install ASC and the global skill/command from this checkout:
