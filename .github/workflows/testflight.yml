@@ -35,6 +35,10 @@ on:
       test-destination:
         type: string
         required: true
+      run-tests:
+        description: Run app tests in CI; disable only after local checks pass for the release revision
+        type: boolean
+        default: true
     secrets:
       ASC_KEY_ID:
         required: false
@@ -116,6 +120,7 @@ jobs:
           python3 tooling/codex/scripts/testflight.py check \
             --app "$APP_ID" --bundle-id "$BUNDLE_ID" --group-id "$GROUP_ID"
       - name: Test app
+        if: ${{ inputs.run-tests }}
         working-directory: app
         run: |
           xcodebuild -quiet -project "$APP_PROJECT" -scheme "$APP_SCHEME" \

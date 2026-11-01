@@ -13,6 +13,13 @@ to discover a unique scheme-named project), scheme,
 runner label, Xcode path and explicit simulator test destination. Do not use PR
 events to give untrusted fork code signing credentials.
 
+`run-tests` defaults to `true`. A caller may set `run-tests: false` to avoid
+duplicating full local tests in CI. Before releasing with this opt-out, run the
+app's required checks locally against the exact committed revision being
+released and record the source SHA and results in the release handoff. Repeat
+affected checks if the source changes. This skips only the `Test app` step;
+archive, signing, upload and receipt verification still run.
+
 Store these secrets in the **app repository's** `testflight` environment:
 
 | Secret | Value |
