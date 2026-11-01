@@ -7,6 +7,7 @@ import sys
 import tempfile
 import unittest
 from unittest.mock import patch
+from unittest.mock import Mock
 import zipfile
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
@@ -26,6 +27,21 @@ def build(state="VALID", beta="IN_BETA_TESTING", app="123", number="7", expired=
 
 
 class TestFlightTests(unittest.TestCase):
+    def test_transient_read_retries_but_upload_never_does(self):
+        for argv, attempts in [(["apps", "view", "--id", "123"], 3), (["builds", "upload", "--ipa", "app.ipa"], 1)]:
+            process = Mock(returncode=1)
+            process.communicate.return_value = ("", "HTTP 503 Service Unavailable")
+            with patch.object(tf.subprocess, "Popen", return_value=process) as popen, patch.object(tf.time, "sleep"):
+                with self.assertRaises(tf.Failure): tf.command(argv)
+                self.assertEqual(popen.call_count, attempts)
+
+    def test_permission_denial_is_not_retried(self):
+        process = Mock(returncode=1)
+        process.communicate.return_value = ("", "HTTP 403 Forbidden")
+        with patch.object(tf.subprocess, "Popen", return_value=process) as popen:
+            with self.assertRaises(tf.Failure): tf.command(["apps", "view", "--id", "123"])
+            self.assertEqual(popen.call_count, 1)
+
     def test_wrong_app_and_external_group_rejected_before_mutation(self):
         app = {"data": {"id": "123", "attributes": {"bundleId": "it.example.App"}}}
         for internal in [False, None]:

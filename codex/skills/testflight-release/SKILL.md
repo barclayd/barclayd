@@ -19,6 +19,8 @@ over Organizer or browser automation. Keep an established Fastlane pipeline.
 - Use `asc version` and the installed command's `--help`. The shared helper is
   tested with ASC 5.17.1. Its upstream skills (`asc-xcode-build`,
   `asc-signing-setup`, `asc-testflight-orchestration`) cover command details.
+- Set `TESTFLIGHT_ASC_PROFILE` to select an existing ASC profile explicitly;
+  leave it unset in CI when credentials come from environment secrets.
 - API keys and signing identities are different. Read
   [setup.md](references/setup.md) for missing auth or signing. Reuse working
   credentials; no Apple Account password or Safari session is needed for the
@@ -31,6 +33,10 @@ relevant checks, commit its source and record the SHA before archiving. Give eac
 upload a unique build number, including concurrent and in-flight uploads in the
 lookup. Pass build-number overrides to Xcode rather than changing source solely
 for a beta. Keep the archive and signed IPA until delivery is verified.
+Reuse a stable DerivedData cache and incremental builds; clean only to diagnose
+a concrete stale-output problem. Prefer an app's release command when available.
+TripSplit's `python3 scripts/testflight.py release` owns its local build lock,
+tests, manual signing, archive/export, upload and first processing check.
 
 For this internal-only route, export with `testFlightInternalTestingOnly=true`,
 `destination=export` and `manageAppVersionAndBuildNumber=false`. Preserve the
@@ -71,6 +77,8 @@ Apple reports failure, retain the receipt, inspect the protected diagnostic log
 and repair the cause before allocating another build. A timeout alone is not a
 reason to rebuild. Bound follow-up polling; use a supported monitor when work
 must continue after the turn.
+Read calls retry recognised transient transport/429/502–504 failures at most
+twice. Upload and group-assignment commands are never automatically retried.
 
 Use `remote-handoff` for the early simulator video, install instructions and
 focused device checks. Report **uploaded**, **processing**, **available to

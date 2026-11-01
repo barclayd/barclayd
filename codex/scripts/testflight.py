@@ -13,6 +13,7 @@ import signal
 import subprocess
 import sys
 import tempfile
+import time
 import zipfile
 
 
@@ -23,12 +24,14 @@ class Failure(Exception):
     pass
 
 
-def command(args, *, timeout=60, log=None, pending=False):
+def command(args, *, timeout=60, log=None, pending=False, attempt=0):
     """No shell, stdin or raw diagnostic output. Retain private logs when requested."""
     env = dict(os.environ, ASC_TELEMETRY_DISABLED="1", NO_COLOR="1",
                ASC_TIMEOUT="45s", ASC_UPLOAD_TIMEOUT="25m")
     try:
-        process = subprocess.Popen(["asc", *args], stdin=subprocess.DEVNULL,
+        profile = os.environ.get("TESTFLIGHT_ASC_PROFILE")
+        argv = ["asc", *(["--profile", profile] if profile else []), *args]
+        process = subprocess.Popen(argv, stdin=subprocess.DEVNULL,
                                    stdout=subprocess.PIPE, stderr=subprocess.PIPE,
                                    text=True, env=env, start_new_session=True)
     except OSError as error:
@@ -48,6 +51,13 @@ def command(args, *, timeout=60, log=None, pending=False):
     if log:
         private_write(log, stdout + "\n" + stderr)
     if process.returncode and not (pending and process.returncode == 7):
+        read_only = any(args[:len(prefix)] == prefix for prefix in [
+            ["apps", "view"], ["testflight", "groups", "list"],
+            ["testflight", "groups", "testers", "list"], ["builds", "info"]])
+        transient = re.search(r"(?i)(timed? out|timeout|connection reset|connection refused|temporary|tls handshake|\b429\b|\b50[234]\b)", stderr)
+        if read_only and transient and attempt < 2:
+            time.sleep(attempt + 1)
+            return command(args, timeout=timeout, log=log, pending=pending, attempt=attempt + 1)
         suffix = f" Inspect private log {log}." if log else " Check ASC auth and command permissions."
         raise Failure(f"ASC {' '.join(args[:2])} failed (exit {process.returncode})." + suffix)
     if args == ["version"]:
