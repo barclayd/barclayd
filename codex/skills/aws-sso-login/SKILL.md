@@ -1,6 +1,6 @@
 ---
 name: aws-sso-login
-description: Sign in to AWS CLI with IAM Identity Center (SSO), or recover an expired AWS SSO session, using a device link Dan can authorise on his phone while Codex keeps the login command running on his laptop. Use for aws sso login and AWS access blocked by expired SSO credentials.
+description: Sign in to AWS CLI with IAM Identity Center (SSO), or recover an expired AWS SSO session, using a device link Dan can authorise on his phone while the agent keeps the login command running on his laptop. Use for aws sso login and AWS access blocked by expired SSO credentials.
 ---
 
 # AWS SSO login from a phone
@@ -35,6 +35,9 @@ profile when the user names it or the active task clearly establishes it.
    waits. With `exec_command`, use a short initial `yield_time_ms`, retain its
    `session_id`, and resume with `write_stdin`. Keep this process running while
    the user authorises; do not launch a second login merely because it is waiting.
+   In Claude Code, use Bash's background execution and its returned task handle
+   to read output and follow the same process. Don't assume Codex tool names are
+   available in another agent.
 
 3. Immediately send the actual link and code printed by this invocation:
 
@@ -43,7 +46,7 @@ profile when the user names it or the active task clearly establishes it.
    > your laptop; I'll verify access when approval completes.
 
    Prefer the printed URL that autofills the code. The link may open in the
-   phone's browser from Codex. Device authorisation supports another device;
+   phone's browser from the chat. Device authorisation supports another device;
    `--no-browser` alone does not make the default PKCE flow suitable for this.
    Do not substitute the CLI's default PKCE login URL, open a desktop browser,
    request passwords or MFA codes in chat, or save device codes in skill files.
@@ -65,7 +68,7 @@ profile when the user names it or the active task clearly establishes it.
 - The AWS CLI stores its session in its normal local cache. Later AWS commands
   must use this same host/user and selected profile. A phone approving the link
   does not transfer credentials to an unrelated cloud chat or computer.
-- Keep the laptop and Codex host awake and online. No background schedule,
+- Keep the laptop and agent host awake and online. No background schedule,
   infrastructure, IAM policy, SSO duration, or AWS profile changes are needed.
 - This agreement authorises the requested login flow. Subsequent AWS operations
   remain scoped to the user's task; do not silently select a break-glass role.

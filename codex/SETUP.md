@@ -1,5 +1,9 @@
 # Codex setup
 
+These skills can also be linked into Claude Code with
+`python3 claude/install-shared-skills.py` from this checkout. See
+[Claude setup](../claude/SETUP.md) for prerequisites and invocation syntax.
+
 ## TestFlight from the terminal
 
 Install ASC and the global skill/command from this checkout:

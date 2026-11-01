@@ -4,6 +4,9 @@ Install the shared command and skill with `./codex/install-testflight.sh` from
 `~/Developer/barclayd`. Install ASC with Homebrew (`brew install asc`) if absent.
 `asc install-skills` installs its pinned, reviewed upstream skill pack. Keep the
 CLI version aligned with `codex/testflight-toolchain.json` when upgrading.
+For Claude Code, run `python3 claude/install-shared-skills.py` from the same
+checkout after installing that pack. It links the shared skills and CLI helpers;
+the same local authentication and signing setup applies.
 
 ## App Store Connect
 

@@ -11,7 +11,13 @@ integration probes in this chat. The laptop is expected to remain awake and onli
 ## Scope and command
 
 Infer the required capabilities from the active task. The default checks Codex CLI,
-local Codex sign-in, and an authenticated GitHub API read. Add only relevant flags:
+local Codex sign-in, and an authenticated GitHub API read.
+
+When using this skill in Claude Code, the helper's Codex results still describe
+Codex, not Claude authentication. Report them separately from shared service
+access, and use only tools actually available in the current Claude session.
+
+Add only relevant flags:
 
 ```sh
 remote-ready --repo barclayd/barclayd --aws-profile production
