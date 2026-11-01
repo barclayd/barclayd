@@ -35,8 +35,9 @@ lookup. Pass build-number overrides to Xcode rather than changing source solely
 for a beta. Keep the archive and signed IPA until delivery is verified.
 Reuse a stable DerivedData cache and incremental builds; clean only to diagnose
 a concrete stale-output problem. Prefer an app's release command when available.
-TripSplit's `python3 scripts/testflight.py release` owns its local build lock,
-tests, manual signing, archive/export, upload and first processing check.
+TripSplit's release script owns its local build lock, tests, manual signing,
+archive/export, upload and first processing check. Use the command in the app's
+README; its path moves with the Apple project layout.
 
 For this internal-only route, export with `testFlightInternalTestingOnly=true`,
 `destination=export` and `manageAppVersionAndBuildNumber=false`. Preserve the
