@@ -74,6 +74,15 @@ remain required and primitive bounds survive generation. Treat this as a
 regression case to verify against installed versions, not a permanent patch to
 apply blindly. Generation need not expose a public documentation endpoint.
 
+Check named schemas both at nullable use sites and as standalone non-null
+components. Ride On found that making `User.pause` nullable widened the shared
+`Pause` component too. Comparing Zod and generated-schema validation exposed the
+leak; a local union with null preserved the intended non-null component. For this
+case, check a valid object, explicit null, an omitted required property and an
+invalid primitive at the property, then verify that the shared component still
+rejects null. Apply only a demonstrated local correction; do not rewrite every
+nullable schema or assume one generator workaround fits all references.
+
 ## Existing route boundaries
 
 Before adding automatic route validation, classify the existing HTTP surface:
