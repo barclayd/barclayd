@@ -34,9 +34,10 @@ Claude supports personal skills and symlinked skill folders in its
 
 ### Simulator control
 
-Auto mode's safety check blocks third-party tools like AXe and duoctl, even after
-approving them in the chat. To let Claude drive simulators while you're away, add
-these to `permissions.allow` in `~/.claude/settings.json`:
+Auto mode's safety check can block third-party tools even after you approve them in
+the chat. It blocked installing AXe and running duoctl, so install AXe yourself. To
+let Claude drive simulators while you're away, add these to `permissions.allow` in
+`~/.claude/settings.json`:
 
 ```json
 "Bash(axe:*)",

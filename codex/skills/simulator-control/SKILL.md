@@ -32,6 +32,10 @@ blocked command: report it and carry on with `simctl`.
   xcrun simctl boot "$udid" && xcrun simctl bootstatus "$udid" -b
   ```
 
+- `bootstatus -b` returns before the home screen has drawn. Wait until SpringBoard
+  has a PID (`xcrun simctl spawn "$udid" launchctl list | grep SpringBoard`) before
+  capturing or driving it.
+
 - Don't drive a simulator another agent or a release script is using, and never
   install on, launch on or capture a physical device unless Dan says it's free.
 - Leave Device Hub alone. Nothing here needs it, and another agent may be using it
@@ -56,17 +60,29 @@ long tap sequences. They're faster and don't break when a layout moves.
 
 ```sh
 axe describe-ui --udid "$udid"            # accessibility tree with frames, in points
-axe tap --label "Continue" --udid "$udid"
-axe tap --id settings.close --udid "$udid"
-axe tap -x 200 -y 400 --udid "$udid"
-axe swipe --start-x 200 --start-y 700 --end-x 200 --end-y 300 --udid "$udid"
+axe tap --label "Continue" --tap-style physical --udid "$udid"
+axe tap --id settings.close --tap-style physical --udid "$udid"
+axe tap -x 200 -y 400 --tap-style physical --udid "$udid"
+axe swipe --start-x 200 --start-y 700 --end-x 200 --end-y 300 --duration 0.4 --udid "$udid"
 axe type 'Hello' --udid "$udid"
 axe button home --udid "$udid"
 ```
 
-Check `axe <command> --help` before relying on a flag. AXe exits 0 even when a touch
-misses, so confirm every action changed the screen with `describe-ui` or a
-screenshot.
+- **Taps:** always pass `--tap-style physical`. On Xcode 27 the default style reports
+  success and delivers nothing ([AXe #71](https://github.com/cameroncooke/AXe/issues/71)).
+  `--post-delay 0.5` works too.
+- **Check every action:** AXe exits 0 even when a touch misses, so confirm the screen
+  changed with `describe-ui` or a screenshot. Check `axe <command> --help` before
+  relying on a flag.
+- **Reading the tree:** `describe-ui` lists covered screens as well as what's on top,
+  and a sheet's elements come after the screen beneath it. Search for the element you
+  expect rather than reading the first few.
+- **"Timed out creating the simulator remote automation session":** SpringBoard isn't
+  running (a `-` PID in `launchctl list`). Straight after boot, wait for it. If it
+  keeps crashing, shut the simulator down and boot it again.
+- **UI tests:** `describe-ui` can restart `testmanagerd` to recover, which ends any
+  XCUITest run on that simulator ([AXe #76](https://github.com/cameroncooke/AXe/issues/76)).
+  Don't use it on a simulator that's running UI tests.
 
 ## iPhone Duo
 
@@ -100,7 +116,11 @@ duoctl -d "$udid" screenshot "$out/inner.png"
 - Never set the hinge with a tool that jumps straight between closed and open. On
   the iOS 27.1 runtime that can stop the simulator switching screens until it's
   recreated. `duoctl` always sweeps.
-- `simctl io screenConfig ... power` doesn't fold the phone. It only blanks a display.
+- AXe works on the cover screen (closed). Its `describe-ui` includes both displays'
+  elements, so tell them apart by their group's size: about 466 × 678 for the cover
+  and 669 × 951 for the inner screen.
+- Never use `simctl io screenConfig ... power`. It doesn't fold the phone, and it can
+  leave SpringBoard crash-looping until the simulator is shut down and booted again.
 - Device Hub's hinge slider doesn't follow changes made by `duoctl`.
 
 For layout checks, go through the poses the design needs: closed portrait, closed
