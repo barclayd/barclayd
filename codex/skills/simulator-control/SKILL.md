@@ -110,8 +110,15 @@ duoctl -d "$udid" screenshot "$out/inner.png"
 - Coordinates are interface points of the live screen, the same space `elements` reports.
   Orientation names describe the interface: unfolded, the inner screen's default is
   `landscape`.
-- Every change prints `state` afterwards, and fails if the fold or rotation didn't
-  happen. Read it rather than assuming.
+- `tap --label` matches an element's whole label. A list row's button label joins all
+  its text (`🇯🇵, Tokyo & Kyoto, 20 Dec – 29 Dec · 2 people, £0`), so match the visible
+  title's own text element instead (`--label "Tokyo & Kyoto"`).
+- Fold and rotate commands print `state` afterwards, and fail if the change didn't
+  happen. Read it rather than assuming. Touches only print the point they hit, so check
+  them with a screenshot.
+- `close` keeps the inner screen's rotation, so after `rotate portrait` on the open
+  phone the cover came back `landscape-flipped`. Check `state` after closing and
+  rotate back if the next check needs closed portrait.
 - The first run compiles a small helper into `~/.cache/duoctl`.
 - Never set the hinge with a tool that jumps straight between closed and open. On
   the iOS 27.1 runtime that can stop the simulator switching screens until it's
