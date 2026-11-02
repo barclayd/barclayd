@@ -40,10 +40,11 @@ xcrun simctl io "$simulator_udid" recordVideo --codec=h264 "$capture_dir/preview
 
 Set the task-specific variables from the observed simulator and a unique output
 directory. Keep the recording command's process/session handle. Wait for
-`Recording started`, perform the flow through the available supported UI tools,
-then send SIGINT to that recording process and wait for it to finish finalising
-the file. Do not use `killall` or SIGKILL, and do not leave recording running while
-waiting for Apple. Use supported media inspection to verify the finished output.
+`Recording started`, perform the flow with `simulator-control` (AXe, or `duoctl`
+for the iPhone Duo), then send SIGINT to that recording process and wait for it
+to finish finalising the file. Do not use `killall` or SIGKILL, and do not leave
+recording running while waiting for Apple. Use supported media inspection to
+verify the finished output.
 
 Label the video as a simulator preview. Simulator evidence does not establish
 physical microphone/audio behaviour, background execution, device permissions,

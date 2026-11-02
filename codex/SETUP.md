@@ -102,6 +102,25 @@ Apple signing, provision hosting or enable macOS permissions. Those prerequisite
 belong to the relevant project/setup task. First use should verify that the
 chosen media and preview links open on Dan's phone.
 
+## Simulator control
+
+Install AXe, then the command and skill from this checkout:
+
+```sh
+brew install cameroncooke/axe/axe
+./codex/install-simulator-control.sh
+```
+
+The installer links `duoctl` into `~/.local/bin` and `simulator-control` into
+`$CODEX_HOME/skills` or `~/.codex/skills`, and refuses to replace existing files.
+`SIMULATOR_CONTROL_BIN_DIR` can select another command directory.
+
+Invoke `$simulator-control` to check UI on a simulator without anyone at the Mac:
+`simctl` for builds and capture, AXe to read the screen and tap, and `duoctl` to fold,
+rotate and touch the iPhone Duo's inner screen, where AXe's taps don't land. `duoctl`
+is a reviewed copy of [skarol/duoctl](https://github.com/skarol/duoctl) v0.2.1 in
+`codex/skills/simulator-control/vendor/duoctl`; update it by PR, with its hashes.
+
 ## Remote readiness
 
 From this repository, install the command and global skill:

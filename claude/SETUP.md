@@ -5,15 +5,15 @@
 From this checkout, install the ASC pack and link the shared skills into Claude:
 
 ```sh
-brew install asc
+brew install asc cameroncooke/axe/axe
 asc install-skills
 python3 claude/install-shared-skills.py
 ```
 
 This links `apple-app-architecture`, `testflight-release`, `remote-handoff`,
-`remote-ready` and `aws-sso-login` from `codex/skills`, plus the installed `asc-*` pack from
+`remote-ready`, `simulator-control` and `aws-sso-login` from `codex/skills`, plus the installed `asc-*` pack from
 `~/.agents/skills`, into `~/.claude/skills`. The files are shared with Codex, so
-edits stay in sync. It also links `testflight` and `remote-ready` into
+edits stay in sync. It also links `testflight`, `remote-ready` and `duoctl` into
 `~/.local/bin`; ensure that directory is on PATH. Python 3.11+ is required.
 
 The installer is safe to rerun and refuses conflicting files or symlinks before
@@ -23,7 +23,7 @@ uses the reviewed upstream pack pinned by ASC. Keep both source directories
 available. See [the shared setup](../codex/SETUP.md) for CLI and signing details.
 
 Open a fresh Claude Code session and invoke `/apple-app-architecture`,
-`/testflight-release`, `/remote-handoff`, `/remote-ready` or `/aws-sso-login`. Existing ASC credentials
+`/testflight-release`, `/remote-handoff`, `/remote-ready`, `/simulator-control` or `/aws-sso-login`. Existing ASC credentials
 and signing assets work under the same macOS user; this installer doesn't copy
 credentials or change Claude's permissions. `remote-ready` still reports Codex
 CLI/sign-in checks explicitly; those don't establish Claude authentication.
@@ -31,6 +31,21 @@ CLI/sign-in checks explicitly; those don't establish Claude authentication.
 These are local Claude Code skills, not an upload to Claude.ai or Cowork.
 Claude supports personal skills and symlinked skill folders in its
 [skills documentation](https://code.claude.com/docs/en/skills).
+
+### Simulator control
+
+Auto mode's safety check blocks third-party tools like AXe and duoctl, even after
+approving them in the chat. To let Claude drive simulators while you're away, add
+these to `permissions.allow` in `~/.claude/settings.json`:
+
+```json
+"Bash(axe:*)",
+"Bash(duoctl:*)"
+```
+
+`duoctl` is a reviewed copy of [skarol/duoctl](https://github.com/skarol/duoctl) in
+`codex/skills/simulator-control/vendor/duoctl`, so it only changes through a PR here.
+AXe comes from the [AXe project's own tap](https://github.com/cameroncooke/AXe).
 
 For the architecture skill alone, no ASC setup is needed. From this checkout,
 link `codex/skills/apple-app-architecture` into `~/.claude/skills/` using the

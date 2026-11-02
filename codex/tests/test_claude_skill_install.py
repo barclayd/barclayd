@@ -1,3 +1,4 @@
+import hashlib
 import importlib.util
 from pathlib import Path
 import tempfile
@@ -54,6 +55,28 @@ class ClaudeSkillInstallTests(unittest.TestCase):
             with self.assertRaisesRegex(ValueError, "asc install-skills"):
                 installer.planned_links(REPO, root / "skills", root / "bin", root / "missing")
             self.assertEqual(list(root.iterdir()), [])
+
+    def test_duoctl_link_keeps_its_helper_and_licence_beside_it(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            upstream = root / "upstream"
+            for name in installer.REQUIRED_ASC:
+                (upstream / name).mkdir(parents=True)
+                (upstream / name / "SKILL.md").write_text("skill")
+            links = dict((destination.name, source)
+                         for source, destination in installer.planned_links(REPO, root / "skills", root / "bin", upstream))
+            self.assertIn("simulator-control", links)
+            duoctl = links["duoctl"]
+            # duoctl finds its helper next to its resolved path, so a symlink in bin must still reach it.
+            self.assertTrue((duoctl.resolve().parent / "duoctl-helper.m").is_file())
+            self.assertTrue((duoctl.resolve().parent / "LICENSE").is_file())
+
+    def test_vendored_duoctl_matches_its_recorded_hashes(self):
+        vendor = REPO / "codex/skills/simulator-control/vendor/duoctl"
+        readme = (vendor / "README.md").read_text()
+        for name in ("duoctl", "duoctl-helper.m"):
+            digest = hashlib.sha256((vendor / name).read_bytes()).hexdigest()
+            self.assertIn(f"| `{name}` | `{digest}` |", readme)
 
 
 if __name__ == "__main__":
