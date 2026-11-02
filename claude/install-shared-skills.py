@@ -7,8 +7,14 @@ import sys
 
 
 SHARED_SKILLS = (
-    "apple-app-architecture", "aws-sso-login", "remote-ready", "remote-handoff", "testflight-release",
+    "apple-app-architecture", "aws-sso-login", "remote-ready", "remote-handoff", "simulator-control",
+    "testflight-release",
 )
+COMMANDS = {
+    "testflight": "codex/scripts/testflight.py",
+    "remote-ready": "codex/scripts/remote_ready.py",
+    "duoctl": "codex/skills/simulator-control/vendor/duoctl/duoctl",
+}
 REQUIRED_ASC = {"asc-cli-usage", "asc-signing-setup", "asc-xcode-build", "asc-testflight-orchestration"}
 
 
@@ -22,8 +28,8 @@ def planned_links(repo, skills_dir, bin_dir, asc_dir):
         if not (source / "SKILL.md").is_file():
             raise ValueError(f"Missing skill: {source}")
     links = [(source, skills_dir / source.name) for source in sources]
-    for name, script in [("testflight", "testflight.py"), ("remote-ready", "remote_ready.py")]:
-        source = repo / "codex" / "scripts" / script
+    for name, script in COMMANDS.items():
+        source = repo / script
         if not source.is_file():
             raise ValueError(f"Missing command: {source}")
         links.append((source, bin_dir / name))
@@ -58,7 +64,7 @@ def main():
         install_links(links)
     except (ValueError, OSError) as error:
         parser.exit(1, f"{error}\n")
-    print(f"Installed {len(links) - 2} skills and 2 command links for Claude Code.")
+    print(f"Installed {len(links) - len(COMMANDS)} skills and {len(COMMANDS)} command links for Claude Code.")
     print("Open a fresh Claude Code session and use /testflight-release.")
 
 
